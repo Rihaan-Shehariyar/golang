@@ -20,7 +20,7 @@ func main() {
 	r.POST("/login", handlers.Login)
 
 	admin := r.Group("/admin")
-	admin.Use(middleware.JwtAuthMiddleware(), middleware.AdminOnly())
+	admin.Use(middleware.JwtMiddleWare(), middleware.AdminOnly())
 	{
 
 		admin.GET("/users", handlers.GetAllUsers)
@@ -32,5 +32,6 @@ func main() {
 
 	log.Println("Server running")
 	r.Run(":9090")
+
 
 }
