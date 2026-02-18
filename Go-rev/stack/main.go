@@ -75,15 +75,15 @@ func (s *Stack) Push(val int) {
 
 }
 
-func(s *Stack)Pop() int{
- 
-  if s.Top == nil {
-	return 0
-  }
+func (s *Stack) Pop() int {
 
-  val := s.Top.Value
- s.Top = s.Top.Next
-  
- return val
-  
+	if s.Top == nil {
+		return 0
+	}
+
+	val := s.Top.Value
+	s.Top = s.Top.Next
+
+	return val
+
 }

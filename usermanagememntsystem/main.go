@@ -1,26 +1,24 @@
-package main
+// package main
 
-import (
-	"user_system/database"
-	"user_system/models"
-	"user_system/routes"
+// import (
+// 	"user_system/models"
 
-	"github.com/gin-gonic/gin"
-)
+// 	"github.com/gin-gonic/gin"
+// )
 
-func main() {
+// func main() {
 
-	database.Connect()
+// 	database.Connect()
 
-  database.DB.AutoMigrate(
-   &models.User{},
-  &models.Profile{},
-)
+//   database.DB.AutoMigrate(
+//    &models.User{},
+
+// )
 
 
-  r := gin.Default()
+//   r := gin.Default()
  
-  routes.SetUpRoutes(r)
+//   routes.SetUpRoutes(r)
 
- r.Run(":9090")
-}
+//  r.Run(":9090")
+// }

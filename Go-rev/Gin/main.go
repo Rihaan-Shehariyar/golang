@@ -4,7 +4,6 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -81,25 +80,20 @@ func AuthMiddleware() gin.HandlerFunc {
 			ctx.Abort()
 			return
 		}
-  
- ctx.Set("username",username)
- ctx.Next()
+
+		ctx.Set("username", username)
+		ctx.Next()
 	}
 }
 
+func main() {
 
-func main(){
- 
+	r := gin.Default()
 
-r:=gin.Default()
+	r.POST("/login", Login)
+	protected := r.Group("/profile")
 
-r.POST("/login",Login)
-protected :=  r.Group("/profile")
+	protected.Use(AuthMiddleware())
 
- protected.Use(AuthMiddleware())
-
- protected.GET("/profile",Profile)
+	protected.GET("/profile", Profile)
 }
-
-
-
