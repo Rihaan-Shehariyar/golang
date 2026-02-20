@@ -2,8 +2,13 @@ package main
 
 import (
 	"fmt"
-	// "time"
+	"sync"
 )
+
+// import "fmt"
+
+// "fmt"
+// "time"
 
 // import (
 // 	"fmt"
@@ -55,9 +60,8 @@ import (
 
 // }
 
-
 // func worker(id int,ch chan string){
- 
+
 // //  time.Sleep(time.Duration(id)*time.Second)
 //  ch <- fmt.Sprintf("Worker %d done",id)
 // }
@@ -70,8 +74,6 @@ import (
 //  go worker(1,ch1)
 //  go worker(2,ch2)
 
-
- 
 //  select {
 
 //  case r := <-ch1:
@@ -80,3 +82,84 @@ import (
 //   fmt.Println(r)
 // }
 // }
+
+// func main() {
+
+// 	odd := make(chan bool)
+// 	even := make(chan bool)
+
+// 	go func() {
+// 		for i := 1; i <= 10; i += 2 {
+
+// 			<-odd
+// 			fmt.Println("Odd:", i)
+// 			even <- true
+// 		}
+// 	}()
+
+// 	go func() {
+// 		for i := 2; i <= 10; i += 2 {
+// 			<-even
+// 			fmt.Println("Even:", i)
+// 			odd <- true
+// 		}
+// 	}()
+
+// 	odd <- true
+// 	select {}
+
+// }
+
+// func producer(ch chan int){
+// for i:=1;i<=5;i++{
+//   fmt.Println("Produced: ",i)
+//   ch <- i
+//   time.Sleep(500*time.Millisecond)
+// }
+//  close(ch)
+// }
+
+// func consumer(ch chan int){
+
+//  for job := range ch{
+//  fmt.Println("consumed:",job)
+// }
+
+// }
+
+// func main(){
+
+//  ch := make(chan int)
+
+//  go producer(ch)
+//  consumer(ch)
+
+// }
+
+var counter int
+var mu sync.Mutex
+
+func worker(wg *sync.WaitGroup){
+
+ defer wg.Done()
+
+ mu.Lock()
+ counter ++
+ mu.Unlock()
+ 
+}
+
+
+func main(){
+
+ var wg sync.WaitGroup
+
+ for i:=0;i<1000;i++{
+ wg.Add(1)
+ go worker(&wg)
+}
+
+wg.Wait()
+fmt.Println("Final COunter",counter)
+
+}
