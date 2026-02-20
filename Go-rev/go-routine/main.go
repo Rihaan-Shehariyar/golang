@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	// "time"
+)
+
 // import (
 // 	"fmt"
 // 	"runtime"
@@ -32,4 +37,46 @@ package main
 
 // }
 
+// func worker(id int, ch chan int) {
+// 	ch <- id * 2
+// }
 
+// func main() {
+
+// 	ch := make(chan int)
+
+// 	for i := 1; i <= 3; i++ {
+// 		go worker(i, ch)
+// 	}
+
+// 	for i := 1; i <= 3; i++ {
+// 		fmt.Println(<-ch)
+// 	}
+
+// }
+
+
+// func worker(id int,ch chan string){
+ 
+// //  time.Sleep(time.Duration(id)*time.Second)
+//  ch <- fmt.Sprintf("Worker %d done",id)
+// }
+
+//  func main(){
+
+//  ch1 :=make(chan string)
+//  ch2 := make(chan string)
+
+//  go worker(1,ch1)
+//  go worker(2,ch2)
+
+
+ 
+//  select {
+
+//  case r := <-ch1:
+//   fmt.Println(r)
+//  case r := <-ch2:
+//   fmt.Println(r)
+// }
+// }
