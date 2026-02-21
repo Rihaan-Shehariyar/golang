@@ -17,9 +17,46 @@ package main
 
 // }
 
+// type Node struct {
+// 	Value int
+// 	Next  *Node
+// }
+
+// type Queue struct {
+// 	Front *Node
+// 	Rear  *Node
+// }
+
+// func (q *Queue) Enqueue(val int) {
+// 	newNode := &Node{Value: 10}
+
+// 	if q.Rear == nil {
+// 		q.Rear = newNode
+// 		q.Front = newNode
+// 		return
+// 	}
+
+// 	q.Rear.Next = newNode
+// 	q.Rear = newNode
+
+// }
+
+// func (q *Queue) Dequeue() {
+// 	if q.Front == nil {
+// 		return
+// 	}
+
+// 	q.Front = q.Front.Next
+
+// 	if q.Front == nil {
+// 		q.Rear = nil
+// 	}
+
+// }
+
 type Node struct {
-	Value int
-	Next  *Node
+	Data int
+	Next *Node
 }
 
 type Queue struct {
@@ -27,13 +64,11 @@ type Queue struct {
 	Rear  *Node
 }
 
-func (q *Queue) Enqueue(val int) {
-	newNode := &Node{Value: 10}
-
-	if q.Rear == nil {
-		q.Rear = newNode
+func (q *Queue) Enqueue(value int) {
+	newNode := &Node{Data: value}
+	if q.Front == nil {
 		q.Front = newNode
-		return
+		q.Rear = newNode
 	}
 
 	q.Rear.Next = newNode
@@ -47,9 +82,5 @@ func (q *Queue) Dequeue() {
 	}
 
 	q.Front = q.Front.Next
-
-	if q.Front == nil {
-		q.Rear = nil
-	}
 
 }

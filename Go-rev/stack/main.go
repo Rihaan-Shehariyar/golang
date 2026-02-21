@@ -57,33 +57,62 @@ package main
 
 // Linked List
 
+// type Node struct {
+// 	Value int
+// 	Next  *Node
+// }
+
+// type Stack struct {
+// 	Top *Node
+// }
+
+// func (s *Stack) Push(val int) {
+
+// 	newNode := &Node{Value: 10}
+
+// 	newNode.Next = s.Top
+// 	s.Top = newNode
+
+// }
+
+// func (s *Stack) Pop() int {
+
+// 	if s.Top == nil {
+// 		return 0
+// 	}
+
+// 	val := s.Top.Value
+// 	s.Top = s.Top.Next
+
+// 	return val
+
+// }
+
 type Node struct {
-	Value int
-	Next  *Node
+	Data int
+	Next *Node
 }
 
 type Stack struct {
 	Top *Node
 }
 
-func (s *Stack) Push(val int) {
-
-	newNode := &Node{Value: 10}
-
-	newNode.Next = s.Top
-	s.Top = newNode
-
+ func (s *Stack)Push(value int){
+  
+ newNode := &Node{Data: value}
+ 
+  newNode.Next = s.Top
+  s.Top = newNode
+ 
 }
 
-func (s *Stack) Pop() int {
-
-	if s.Top == nil {
-		return 0
-	}
-
-	val := s.Top.Value
-	s.Top = s.Top.Next
-
-	return val
-
+func (s *Stack)Pop(value int){
+  if s.Top == nil{
+  return
 }
+
+ s.Top = s.Top.Next
+ 
+}
+
+ 

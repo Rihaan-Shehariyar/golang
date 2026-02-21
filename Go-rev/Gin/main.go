@@ -7,6 +7,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+
+
 var session = map[string]string{}
 
 func SessionGen() string {
