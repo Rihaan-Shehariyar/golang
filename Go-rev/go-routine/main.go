@@ -167,7 +167,6 @@ import (
 
 // }
 
-
 // var wg sync.WaitGroup
 
 // func main(){
@@ -187,37 +186,31 @@ import (
 //     <-even
 //    fmt.Println("even:",i)
 //     odd <-true
-// } 
+// }
 //  }()
- 
+
 //   odd<-true
 //   select{}
-// } 
-
-
-
+// }
 
 // func main(){
- 
+
 //  var wg sync.WaitGroup
- 
+
 //  num := make(chan int)
 //  wg.Add(5)
 //  for i := 1; i <6 ; i++ {
-    
+
 // 	 go func() {
 //        defer wg.Done()
 // 		num <- i
 // 	 }()
 
 //   fmt.Print(<-num)
- 
+
 //  }
 //  wg.Wait()
 // }
-
-
-
 
 // func main(){
 
@@ -230,29 +223,28 @@ import (
 
 // close(b)
 //  }()
- 
+
 //   for y := range b{
-//  fmt.Print(y) 
+//  fmt.Print(y)
 // }
 // }
 
+func main() {
+	sl := []int{10, 20, 30, 40, 50}
+	ch := make(chan int)
+	sum := 0
 
-func main(){
- sl := []int{10, 20, 30, 40, 50}
- ch := make(chan int)
- sum := 0
+	go func() {
+		for _, x := range sl {
+			ch <- x
+		}
+		close(ch)
+	}()
 
- go func() {
-	for _,x := range sl{
-  ch <- x
-}
- close(ch)
- }()
+	for x := range ch {
+		sum = sum + x
+	}
 
- for x := range ch{
-  sum = sum + x
-}
-
-fmt.Println(sum)
+	fmt.Println(sum)
 
 }
