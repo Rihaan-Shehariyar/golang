@@ -5,161 +5,214 @@ import (
 	"sync"
 )
 
-// import "fmt"
-
-// "fmt"
-// "time"
-
 // import (
 // 	"fmt"
-// 	"runtime"
 // 	"sync"
-// 	"time"
 // )
 
-// func job(id int, wg *sync.WaitGroup) {
+// // import "fmt"
 
-// 	defer wg.Done()
+// // "fmt"
+// // "time"
 
-// 	fmt.Println("Job Started : ", id)
-// 	time.Sleep(1 * time.Second)
-// 	fmt.Println("Job Finished : ", id)
+// // import (
+// // 	"fmt"
+// // 	"runtime"
+// // 	"sync"
+// // 	"time"
+// // )
 
-// }
-// func main() {
-// 	var wg sync.WaitGroup
+// // func job(id int, wg *sync.WaitGroup) {
 
-// 	for i := 1; i <= 3; i++ {
+// // 	defer wg.Done()
 
-// 		wg.Add(1)
-// 		go job(i, &wg)
+// // 	fmt.Println("Job Started : ", id)
+// // 	time.Sleep(1 * time.Second)
+// // 	fmt.Println("Job Finished : ", id)
 
-// 	}
+// // }
+// // func main() {
+// // 	var wg sync.WaitGroup
 
-// 	wg.Wait()
-// runtime.GOMAXPROCS(3)
-// 	fmt.Println("All Jobs Completed")
+// // 	for i := 1; i <= 3; i++ {
 
-// }
+// // 		wg.Add(1)
+// // 		go job(i, &wg)
 
-// func worker(id int, ch chan int) {
-// 	ch <- id * 2
-// }
+// // 	}
 
-// func main() {
+// // 	wg.Wait()
+// // runtime.GOMAXPROCS(3)
+// // 	fmt.Println("All Jobs Completed")
 
-// 	ch := make(chan int)
+// // }
 
-// 	for i := 1; i <= 3; i++ {
-// 		go worker(i, ch)
-// 	}
+// // func worker(id int, ch chan int) {
+// // 	ch <- id * 2
+// // }
 
-// 	for i := 1; i <= 3; i++ {
-// 		fmt.Println(<-ch)
-// 	}
+// // func main() {
 
-// }
+// // 	ch := make(chan int)
 
-// func worker(id int,ch chan string){
+// // 	for i := 1; i <= 3; i++ {
+// // 		go worker(i, ch)
+// // 	}
 
-// //  time.Sleep(time.Duration(id)*time.Second)
-//  ch <- fmt.Sprintf("Worker %d done",id)
-// }
+// // 	for i := 1; i <= 3; i++ {
+// // 		fmt.Println(<-ch)
+// // 	}
 
-//  func main(){
+// // }
 
-//  ch1 :=make(chan string)
-//  ch2 := make(chan string)
+// // func worker(id int,ch chan string){
 
-//  go worker(1,ch1)
-//  go worker(2,ch2)
+// // //  time.Sleep(time.Duration(id)*time.Second)
+// //  ch <- fmt.Sprintf("Worker %d done",id)
+// // }
 
-//  select {
+// //  func main(){
 
-//  case r := <-ch1:
-//   fmt.Println(r)
-//  case r := <-ch2:
-//   fmt.Println(r)
-// }
-// }
+// //  ch1 :=make(chan string)
+// //  ch2 := make(chan string)
 
-// func main() {
+// //  go worker(1,ch1)
+// //  go worker(2,ch2)
 
-// 	odd := make(chan bool)
-// 	even := make(chan bool)
+// //  select {
 
-// 	go func() {
-// 		for i := 1; i <= 10; i += 2 {
+// //  case r := <-ch1:
+// //   fmt.Println(r)
+// //  case r := <-ch2:
+// //   fmt.Println(r)
+// // }
+// // }
 
-// 			<-odd
-// 			fmt.Println("Odd:", i)
-// 			even <- true
-// 		}
-// 	}()
+// // func main() {
 
-// 	go func() {
-// 		for i := 2; i <= 10; i += 2 {
-// 			<-even
-// 			fmt.Println("Even:", i)
-// 			odd <- true
-// 		}
-// 	}()
+// // 	odd := make(chan bool)
+// // 	even := make(chan bool)
 
-// 	odd <- true
-// 	select {}
+// // 	go func() {
+// // 		for i := 1; i <= 10; i += 2 {
 
-// }
+// // 			<-odd
+// // 			fmt.Println("Odd:", i)
+// // 			even <- true
+// // 		}
+// // 	}()
 
-// func producer(ch chan int){
-// for i:=1;i<=5;i++{
-//   fmt.Println("Produced: ",i)
-//   ch <- i
-//   time.Sleep(500*time.Millisecond)
-// }
-//  close(ch)
-// }
+// // 	go func() {
+// // 		for i := 2; i <= 10; i += 2 {
+// // 			<-even
+// // 			fmt.Println("Even:", i)
+// // 			odd <- true
+// // 		}
+// // 	}()
 
-// func consumer(ch chan int){
+// // 	odd <- true
+// // 	select {}
 
-//  for job := range ch{
-//  fmt.Println("consumed:",job)
-// }
+// // }
+
+// // func producer(ch chan int){
+// // for i:=1;i<=5;i++{
+// //   fmt.Println("Produced: ",i)
+// //   ch <- i
+// //   time.Sleep(500*time.Millisecond)
+// // }
+// //  close(ch)
+// // }
+
+// // func consumer(ch chan int){
+
+// //  for job := range ch{
+// //  fmt.Println("consumed:",job)
+// // }
+
+// // }
+
+// // func main(){
+
+// //  ch := make(chan int)
+
+// //  go producer(ch)
+// //  consumer(ch)
+
+// // }
+
+// var counter int
+// var mu sync.Mutex
+
+// func worker(wg *sync.WaitGroup){
+
+//  defer wg.Done()
+
+//  mu.Lock()
+//  counter ++
+//  mu.Unlock()
 
 // }
 
 // func main(){
 
-//  ch := make(chan int)
+//  var wg sync.WaitGroup
 
-//  go producer(ch)
-//  consumer(ch)
+//  for i:=0;i<1000;i++{
+//  wg.Add(1)
+//  go worker(&wg)
+// }
+
+// wg.Wait()
+// fmt.Println("Final COunter",counter)
 
 // }
 
-var counter int
-var mu sync.Mutex
 
-func worker(wg *sync.WaitGroup){
+// var wg sync.WaitGroup
 
- defer wg.Done()
+// func main(){
+//   odd :=make(chan bool)
+//   even := make(chan bool)
 
- mu.Lock()
- counter ++
- mu.Unlock()
+//  go func() {
+// 	for i := 1; i < 11; i+=2 {
+//        <-odd
+//      fmt.Println("Odd : ",i)
+//       	even <- true
+// 	}
+//  }()
+
+//  go func() {
+// 	for i:=2; i<11; i +=2{
+//     <-even
+//    fmt.Println("even:",i)
+//     odd <-true
+// } 
+//  }()
  
-}
+//   odd<-true
+//   select{}
+// } 
+
+
 
 
 func main(){
-
+ 
  var wg sync.WaitGroup
+ 
+ num := make(chan int)
+ wg.Add(5)
+ for i := 1; i <6 ; i++ {
+    
+	 go func() {
+       defer wg.Done()
+		num <- i
+	 }()
 
- for i:=0;i<1000;i++{
- wg.Add(1)
- go worker(&wg)
-}
-
-wg.Wait()
-fmt.Println("Final COunter",counter)
-
+  fmt.Print(<-num)
+ 
+ }
+ wg.Wait()
 }

@@ -4,6 +4,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -98,4 +99,16 @@ func main() {
 	protected.Use(AuthMiddleware())
 
 	protected.GET("/profile", Profile)
+}
+
+
+func SessionGene()string{
+  b := make([]byte,32)
+
+ _,err := rand.Read(b)
+if err!=nil{
+ panic("error")
+}
+ 
+  return base64.URLEncoding.EncodeToString(b)
 }
