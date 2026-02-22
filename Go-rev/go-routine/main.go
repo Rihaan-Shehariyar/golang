@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 // import (
@@ -198,21 +197,62 @@ import (
 
 
 
-func main(){
+// func main(){
  
- var wg sync.WaitGroup
+//  var wg sync.WaitGroup
  
- num := make(chan int)
- wg.Add(5)
- for i := 1; i <6 ; i++ {
+//  num := make(chan int)
+//  wg.Add(5)
+//  for i := 1; i <6 ; i++ {
     
-	 go func() {
-       defer wg.Done()
-		num <- i
-	 }()
+// 	 go func() {
+//        defer wg.Done()
+// 		num <- i
+// 	 }()
 
-  fmt.Print(<-num)
+//   fmt.Print(<-num)
  
- }
- wg.Wait()
+//  }
+//  wg.Wait()
+// }
+
+
+
+
+// func main(){
+
+//  arr := []int{1,2,3,4}
+//  b := make(chan int)
+//  go func() {
+// 	for _,x := range arr{
+//   b <- x *2
+//  }
+
+// close(b)
+//  }()
+ 
+//   for y := range b{
+//  fmt.Print(y) 
+// }
+// }
+
+
+func main(){
+ sl := []int{10, 20, 30, 40, 50}
+ ch := make(chan int)
+ sum := 0
+
+ go func() {
+	for _,x := range sl{
+  ch <- x
+}
+ close(ch)
+ }()
+
+ for x := range ch{
+  sum = sum + x
+}
+
+fmt.Println(sum)
+
 }
