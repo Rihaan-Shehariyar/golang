@@ -13,8 +13,7 @@ func Worker(ctx context.Context, id int, jobs <-chan int, wg *sync.WaitGroup) {
 
 	for {
 		select {
-
-		case job, ok := <-jobs:
+        case job, ok := <-jobs:
 
 			if !ok {
 				fmt.Println("Worker", id, "Stopping")
