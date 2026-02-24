@@ -1,6 +1,7 @@
 package main
 
 import (
+
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -71,6 +72,7 @@ import (
  type Claims struct{
  UserID uint   
  email string
+ jwt.Claims
   
 }
 
@@ -109,3 +111,4 @@ func JwtMiddleware()gin.HandlerFunc{
 
 }
 }
+
