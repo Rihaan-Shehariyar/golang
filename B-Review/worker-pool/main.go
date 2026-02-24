@@ -13,7 +13,7 @@ func Worker(ctx context.Context, id int, jobs <-chan int, wg *sync.WaitGroup) {
 
 	for {
 		select {
-        case job, ok := <-jobs:
+		case job, ok := <-jobs:
 
 			if !ok {
 				fmt.Println("Worker", id, "Stopping")
@@ -44,8 +44,7 @@ func main() {
 	for i := 0; i < workCount; i++ {
 
 		wg.Add(1)
-
-		go Worker(ctx, i, jobs, &wg)
+ 	go Worker(ctx, i, jobs, &wg)
 
 	}
 
