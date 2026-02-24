@@ -44,7 +44,7 @@ func main() {
 	for i := 0; i < workCount; i++ {
 
 		wg.Add(1)
- 	go Worker(ctx, i, jobs, &wg)
+		go Worker(ctx, i, jobs, &wg)
 
 	}
 
