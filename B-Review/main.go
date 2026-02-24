@@ -1,7 +1,6 @@
 package main
 
 import (
-
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -69,46 +68,40 @@ import (
 
 // }
 
- type Claims struct{
- UserID uint   
- email string
- jwt.Claims
-  
+type Claims struct {
+	UserID uint
+	email  string
+	jwt.Claims
 }
 
- var jwtsecret = []byte("Secret-Key")
+var jwtsecret = []byte("Secret-Key")
 
-func JwtMiddleware()gin.HandlerFunc{
- return func(ctx *gin.Context) {
+func JwtMiddleware() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
 
-  auth := ctx.GetHeader("Authorization")
+		auth := ctx.GetHeader("Authorization")
 
- if auth == ""{
-  ctx.JSON(401,gin.H{"error":"Please Login"})
-  ctx.Abort()
-  return 
+		if auth == "" {
+			ctx.JSON(401, gin.H{"error": "Please Login"})
+			ctx.Abort()
+			return
+		}
+
+		tokenstr := strings.TrimPrefix(auth, "Bearer ")
+		claims := Claims{}
+
+		token, err := jwt.ParseWithClaims(tokenstr, claims, func(t *jwt.Token) (interface{}, error) {
+			return jwtsecret, nil
+		})
+
+		if err != nil || !token.Valid {
+			ctx.JSON(401, gin.H{"error": "Invalid Token"})
+			ctx.Abort()
+			return
+		}
+
+		ctx.Set("email", claims.email)
+		ctx.Set("user_id", claims.UserID)
+
+	}
 }
-
- tokenstr := strings.TrimPrefix(auth,"Bearer ")
- claims := Claims{}
-
-
- token, err := jwt.ParseWithClaims(tokenstr,claims,func(t *jwt.Token) (interface{}, error) {
-  return jwtsecret,nil
-})
- 
- if err!=nil || !token.Valid{
-  ctx.JSON(401,gin.H{"error":"Invalid Token"})
-  ctx.Abort()
-  return 
-}
-
- ctx.Set("email",claims.email)
- ctx.Set("user_id",claims.UserID)
-
-
-
-
-}
-}
-
