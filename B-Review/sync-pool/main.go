@@ -6,36 +6,35 @@ import (
 )
 
 var pool = sync.Pool{
- New: func() any {
-   fmt.Println("creating a new Buffer")
-   return make([]byte,0,10)
-},
+	New: func() any {
+		fmt.Println("creating a new Buffer")
+		return make([]byte, 0, 10)
+	},
 }
 
+func worker(id int, wg *sync.WaitGroup) {
 
-func worker(id int,wg *sync.WaitGroup){
+	defer wg.Done()
 
- defer wg.Done()
+	buff := pool.Get().([]byte)
 
- buff := pool.Get().([]byte)
+	buff = append(buff, byte(id))
 
- buff = append(buff, byte(id))
+	fmt.Println("worker", id, "buff:", buff)
 
- fmt.Println("worker",id,"buff:",buff)
-
- buff = buff[:0]
- pool.Put(buff)
+	buff = buff[:0]
+	pool.Put(buff)
 }
 
-func main(){
- 
- var wg sync.WaitGroup
+func main() {
 
- for i := 0; i < 5; i++ {
-	wg.Add(1)
-    go worker(i,&wg)
- }
+	var wg sync.WaitGroup
 
- wg.Wait()
- 
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
+		go worker(i, &wg)
+	}
+
+	wg.Wait()
+
 }
