@@ -119,6 +119,7 @@ func Print[T any](v T) {
 
 func main() {
 	Print(1)
+
 	Print("Hello World")
     Print(true)
 
