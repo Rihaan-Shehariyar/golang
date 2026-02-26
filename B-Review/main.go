@@ -1,6 +1,7 @@
 package main
 
 import (
+	"runtime"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -104,4 +105,8 @@ func JwtMiddleware() gin.HandlerFunc {
 		ctx.Set("user_id", claims.UserID)
 
 	}
+}
+
+func main() {
+	runtime.GOMAXPROCS(1)
 }
