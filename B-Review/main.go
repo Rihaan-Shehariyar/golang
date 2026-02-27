@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+// import "fmt"
 
 // import (
 // 	"runtime"
@@ -113,14 +113,76 @@ import "fmt"
 // 	runtime.GOMAXPROCS(1)
 // }
 
-func Print[T any](v T) {
-	fmt.Println(v)
+// func Print[T any](v T) {
+// 	fmt.Println(v)
+// }
+
+// func main() {
+// 	Print(1)
+
+// 	Print("Hello World")
+//     Print(true)
+
+// }
+
+
+
+type Node struct{
+  Data int
+  Next *Node
 }
 
-func main() {
-	Print(1)
+func Reverse(head *Node)*Node{
+ var prev *Node
+ curr := head
 
-	Print("Hello World")
-    Print(true)
+//  1->2->3->4->nil
+
+ for curr!=nil{
+   next := curr.Next // 2 // 3
+   curr.Next = prev // nil // 
+   prev = curr //1
+   curr = next // 2
+}
+ 
+return  prev
+ 
+}
+
+func Rever(head *Node)*Node{
+ 
+ var prev *Node
+  curr := head
+  
+  for curr!=nil{
+   next := curr.Next
+   curr.Next = prev
+   prev = curr
+   curr = next
+}
+ 
+ return prev
 
 }
+
+func ReverseFirstK(head *Node,k int)*Node{
+ 
+ var prev *Node
+
+ curr := head
+ count := 0 
+
+ for curr!=nil && count < k{
+  next := curr.Next
+  curr.Next = prev 
+  prev = curr 
+  curr = next
+  count++
+} 
+
+ head.Next = curr
+
+ return prev
+
+}
+
