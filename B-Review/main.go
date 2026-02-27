@@ -137,10 +137,10 @@ func Reverse(head *Node) *Node {
 	//  1->2->3->4->nil
 
 	for curr != nil {
-		next := curr.Next // 2 // 3
-		curr.Next = prev  // nil //
-		prev = curr       //1
-		curr = next       // 2
+		next := curr.Next 
+		curr.Next = prev  
+		prev = curr       
+		curr = next       
 	}
 
 	return prev
