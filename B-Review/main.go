@@ -186,3 +186,28 @@ func ReverseFirstK(head *Node,k int)*Node{
 
 }
 
+func ReverseBetween(head *Node,x,y int)*Node{
+	if head == nil || x==y {
+		return head
+	}
+
+ dummy := &Node{Next: head}
+ prev := dummy
+
+ for i:=1 ; i<x ;i++{
+  prev = prev.Next
+}
+
+ start := prev.Next
+ curr := start.Next
+
+ for i:= 0 ; i<x-y ; i++{
+  start.Next = curr.Next
+  curr.Next = prev.Next
+  prev.Next = curr
+  curr = start.Next
+}
+
+ return dummy.Next
+ 
+}
