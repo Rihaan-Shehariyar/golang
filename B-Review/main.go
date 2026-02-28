@@ -142,7 +142,6 @@ func Reverse(head *Node) *Node {
 		prev = curr
 		curr = next
 	}
-
 	return prev
 
 }
