@@ -95,6 +95,6 @@ func main() {
 	}
 
 	close(jobs)
-   wg.Wait()
+	wg.Wait()
 
 }
