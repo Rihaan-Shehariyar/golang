@@ -151,6 +151,7 @@ func Rever(head *Node) *Node {
 	var prev *Node
 	curr := head
 
+
 	for curr != nil {
 		next := curr.Next
 		curr.Next = prev
