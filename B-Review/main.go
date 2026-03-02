@@ -209,7 +209,7 @@ type Node struct {
 
 func Reverse(head *Node) *Node {
 
-	var prev *Node
+    	var prev *Node
 
 	curr := head
 
