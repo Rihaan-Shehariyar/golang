@@ -130,80 +130,99 @@ type Node struct {
 	Next *Node
 }
 
-func Reverse(head *Node) *Node {
+// func Reverse(head *Node) *Node {
+// 	var prev *Node
+// 	curr := head
+
+// 	//  1->2->3->4->nil
+
+// 	for curr != nil {
+// 		next := curr.Next
+// 		curr.Next = prev
+// 		prev = curr
+// 		curr = next
+// 	}
+// 	return prev
+
+// }
+
+// func Rever(head *Node) *Node {
+
+// 	var prev *Node
+// 	curr := head
+
+
+// 	for curr != nil {
+// 		next := curr.Next
+// 		curr.Next = prev
+// 		prev = curr
+// 		curr = next
+// 	}
+//    return prev
+
+// }
+
+// func ReverseFirstK(head *Node, k int) *Node {
+
+// 	var prev *Node
+
+// 	curr := head
+// 	count := 0
+
+// 	for curr != nil && count < k {
+// 		next := curr.Next
+// 		curr.Next = prev
+// 		prev = curr
+// 		curr = next
+// 		count++
+// 	}
+
+// 	head.Next = curr
+
+// 	return prev
+
+// }
+
+// func ReverseBetween(head *Node, x, y int) *Node {
+// 	if head == nil || x == y {
+// 		return head
+// 	}
+
+// 	dummy := &Node{Next: head}
+// 	prev := dummy
+
+// 	for i := 1; i < x; i++ {
+// 		prev = prev.Next
+// 	}
+
+// 	start := prev.Next
+// 	curr := start.Next
+
+// 	for i := 0; i < x-y; i++ {
+// 		start.Next = curr.Next
+// 		curr.Next = prev.Next
+// 		prev.Next = curr
+// 		curr = start.Next
+// 	}
+
+// 	return dummy.Next
+// }
+
+
+
+
+func Reverse(head *Node)*Node{
 	var prev *Node
-	curr := head
 
-	//  1->2->3->4->nil
+ curr := head
 
-	for curr != nil {
-		next := curr.Next
-		curr.Next = prev
-		prev = curr
-		curr = next
-	}
-	return prev
-
+ for curr!=nil{
+   next := curr.Next
+   curr.Next = prev
+   prev = curr
+   curr = next
 }
+ 
+  return  prev
 
-func Rever(head *Node) *Node {
-
-	var prev *Node
-	curr := head
-
-
-	for curr != nil {
-		next := curr.Next
-		curr.Next = prev
-		prev = curr
-		curr = next
-	}
-   return prev
-
-}
-
-func ReverseFirstK(head *Node, k int) *Node {
-
-	var prev *Node
-
-	curr := head
-	count := 0
-
-	for curr != nil && count < k {
-		next := curr.Next
-		curr.Next = prev
-		prev = curr
-		curr = next
-		count++
-	}
-
-	head.Next = curr
-
-	return prev
-
-}
-
-func ReverseBetween(head *Node, x, y int) *Node {
-	if head == nil || x == y {
-		return head
-	}
-
-	dummy := &Node{Next: head}
-	prev := dummy
-
-	for i := 1; i < x; i++ {
-		prev = prev.Next
-	}
-
-	start := prev.Next
-	curr := start.Next
-
-	for i := 0; i < x-y; i++ {
-		start.Next = curr.Next
-		curr.Next = prev.Next
-		prev.Next = curr
-		curr = start.Next
-	}
-
-	return dummy.Next
 }
