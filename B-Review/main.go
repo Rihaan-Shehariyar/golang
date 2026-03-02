@@ -151,7 +151,6 @@ type Node struct {
 // 	var prev *Node
 // 	curr := head
 
-
 // 	for curr != nil {
 // 		next := curr.Next
 // 		curr.Next = prev
@@ -208,21 +207,18 @@ type Node struct {
 // 	return dummy.Next
 // }
 
-
-
-
-func Reverse(head *Node)*Node{
+func Reverse(head *Node) *Node {
 	var prev *Node
 
- curr := head
+	curr := head
 
- for curr!=nil{
-   next := curr.Next
-   curr.Next = prev
-   prev = curr
-   curr = next
-}
- 
-  return  prev
+	for curr != nil {
+		next := curr.Next
+		curr.Next = prev
+		prev = curr
+		curr = next
+	}
+
+	return prev
 
 }
