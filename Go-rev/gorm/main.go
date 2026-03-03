@@ -16,7 +16,7 @@ type User struct {
 	Created_at time.Time
 }
 
-type Order struct {
+type Order struct {															
 	ID         uint `gorm:"primaryKey"`
 	UserId     uint `gorm:"foriegnKey"`
 	Total      int
@@ -46,5 +46,7 @@ func main() {
 	DB.Create(&User{
 		Name: "name",
 	})
+ 
+
 
 }

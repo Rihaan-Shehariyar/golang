@@ -87,24 +87,26 @@ func AccessToken(email string,role string)(string,error){
 }
 
 
-func JwtAuth()gin.HandlerFunc{
+
+
+
+func JwtAut()gin.HandlerFunc{
  return func(ctx *gin.Context) {
-   auth := ctx.GetHeader("Authorization")
-   if auth == ""{
- ctx.JSON(400,gin.H{"error":""})
- ctx.Abort()
+
+  auth := ctx.GetHeader("Authorization")
+ if auth == ""{
  return 
 }
 
- tokenstr :=strings.TrimPrefix(auth,"Bearer ")
- claims := claims{}
- token,err:= jwt.ParseWithClaims(tokenstr,claims,func(t *jwt.Token) (interface{}, error) {
-   return jwtsecret,nil
+ tokenstr := strings.TrimPrefix(auth," Bearer")
+ claims = claims{}
+
+ token ,err := jwt.ParseWithClaims(tokenstr,claims{},func(t *jwt.Token) (any, error) {
+  return jwtsecret,nil
 })
 
- if err!=nil || !token.Valid{
-	
- }
+ 
+ 
 
 }
 }
