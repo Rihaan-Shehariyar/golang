@@ -25,7 +25,6 @@ func BubbleSort(arr []int) {
 
 }
 
-
 func main() {
 
 	arr := []int{5, 6, 1, 7, 8, 8}
