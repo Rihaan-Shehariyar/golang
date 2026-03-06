@@ -45,15 +45,17 @@ func InsertionSort(arr []int) {
 func SelectionSort(arr []int) {
 	n := len(arr)
 
-	for i := 0; i <= len(arr); i++ {
+	for i := 0; i <= n-1; i++ {
 
 		midIndex := i
 
 		for j := i + 1; j < n; j++ {
-			if arr[j] > arr[midIndex] {
+			if arr[j] < arr[midIndex] {
 				midIndex = j
 			}
 		}
+
+		arr[i], arr[midIndex] = arr[midIndex], arr[i]
 
 	}
 
@@ -63,7 +65,8 @@ func main() {
 
 	arr := []int{5, 6, 1, 7, 8, 8}
 	// BubbleSort(arr)
-	InsertionSort(arr)
+	// InsertionSort(arr)
+	SelectionSort(arr)
 	fmt.Println(arr)
 
 }
