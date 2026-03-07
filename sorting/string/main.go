@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func ReverseString(s string) string {
 	b := []byte(s)
 
@@ -15,5 +17,12 @@ func ReverseString(s string) string {
 	}
 
 	return string(b)
+
+}
+
+func main() {
+	b := "Hello"
+	
+	fmt.Println(ReverseString(b))
 
 }
