@@ -61,6 +61,7 @@ func main() {
 
 	b := "Hello"
 	c := "madam"
+ 
 	fmt.Println(ReverseString(b))
 	fmt.Println(CheckPalindrome(c))
 	fmt.Println(VowelCount(c))
