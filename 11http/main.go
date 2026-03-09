@@ -49,38 +49,31 @@ import (
 //    http.ListenAndServe(":8080",nil)
 // }
 
-
-
-
-
-
 // type helloResponse struct{
 //    Message string `json:"message"`
 // }
 
-
 // func hellloHandler(r http.ResponseWriter , w *http.Request){
-   
+
 //     if w.Method != http.MethodGet{
-  
-//      http.Error(r,"Method Not Allowed",http.StatusMethodNotAllowed)  
+
+//      http.Error(r,"Method Not Allowed",http.StatusMethodNotAllowed)
 //      return
 
 // }
 //    response := helloResponse{
-   
-//     Message: "Hello World", 
+
+//     Message: "Hello World",
 // }
 
 // w.Header.Set("Content-Type","application/json")
 
 // json.NewEncoder(r).Encode(response)
- 
+
 // }
 
-
 // func main(){
- 
+
 //   http.HandleFunc("/api/hello",hellloHandler)
 //   http.ListenAndServe(":8080",nil)
 
