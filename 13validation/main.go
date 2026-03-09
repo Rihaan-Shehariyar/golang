@@ -100,6 +100,7 @@ users[reg.Username] = string(hashpassword)
 
 func loginhandle(c *gin.Context){
 
+
    var req Login
 
  if err := c.ShouldBindJSON(&req) ; err!=nil{
