@@ -5,6 +5,9 @@ import (
 	"strings"
 )
 
+
+
+
 func main() {
 
 	text := "Hello Good Morning Hello Good Night"
