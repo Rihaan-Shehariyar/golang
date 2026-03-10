@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	text := "Hello Good Morning Hello Good Night"
+	text := "Hello Good Morning Hello Good Night GO GO GO"
 	freq := make(map[string]int)
 
 	words := strings.Fields(text)
