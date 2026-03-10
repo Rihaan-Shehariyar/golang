@@ -15,7 +15,7 @@ func main() {
 	for _, word := range words {
 		freq[word]++
 	}
- 
- fmt.Println(freq)
+
+	fmt.Println(freq)
 
 }
