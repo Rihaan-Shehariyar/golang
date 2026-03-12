@@ -24,15 +24,15 @@ func Insert(root *Node, value int) *Node {
 
 }
 
-func Inorder(root *Node){
-  if root == nil {
-	return
-  }
- 
- Inorder(root.left)
- fmt.Println(root.value)
- Inorder(root.right)
- 
+func Inorder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	Inorder(root.left)
+	fmt.Println(root.value)
+	Inorder(root.right)
+
 }
 
 func main() {
@@ -43,6 +43,3 @@ func main() {
 
 	Inorder(root)
 }
-
-
-
