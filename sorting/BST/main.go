@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-
 type Node struct {
 	value int
 	left  *Node
