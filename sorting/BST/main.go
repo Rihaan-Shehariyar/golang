@@ -46,6 +46,18 @@ func PreOrder(root *Node) {
 
 }
 
+func PostOrder(root *Node) {
+
+	if root == nil {
+		return
+	}
+
+	PreOrder(root.left)
+	PostOrder(root.right)
+	fmt.Println(root.value, " ")
+
+}
+
 func main() {
 
 	var root *Node
