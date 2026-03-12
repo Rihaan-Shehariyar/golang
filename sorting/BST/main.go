@@ -35,6 +35,17 @@ func Inorder(root *Node) {
 
 }
 
+func PreOrder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	fmt.Println(root.value, " ")
+	PreOrder(root.left)
+	PreOrder(root.right)
+
+}
+
 func main() {
 
 	var root *Node
