@@ -60,9 +60,21 @@ func PostOrder(root *Node) {
 
 func main() {
 
-	var root *Node
-	root = Insert(root, 10)
-	root = Insert(root, 20)
+ 
+	// var root *Node
+	// root = Insert(root, 10)
+	// root = Insert(root, 20)
+
+	// Inorder(root)
+
+   root := &Node{value: 10}
+
+	root.left = &Node{value: 50}
+	root.right = &Node{value: 3}
+
+	root.left.left = &Node{value: 7}
+	root.left.right = &Node{value: 1}
 
 	Inorder(root)
+
 }
