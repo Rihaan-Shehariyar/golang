@@ -24,6 +24,23 @@ func Insert(root *Node, value int) *Node {
 
 }
 
+func Search(root *Node, value int) bool {
+	if root == nil {
+		return false
+	}
+
+	if root.value == value {
+		return true
+	}
+
+	if value < root.value {
+		return Search(root.left, value)
+	}
+
+	return Search(root.right, value)
+
+}
+
 func Inorder(root *Node) {
 	if root == nil {
 		return
@@ -60,21 +77,22 @@ func PostOrder(root *Node) {
 
 func main() {
 
- 
-	// var root *Node
-	// root = Insert(root, 10)
-	// root = Insert(root, 20)
+	var root *Node
+	root = Insert(root, 10)
+	root = Insert(root, 20)
+
+	fmt.Println(Search(root, 30))
 
 	// Inorder(root)
 
-   root := &Node{value: 10}
+	// root := &Node{value: 10}
 
-	root.left = &Node{value: 50}
-	root.right = &Node{value: 3}
+	// root.left = &Node{value: 50}
+	// root.right = &Node{value: 3}
 
-	root.left.left = &Node{value: 7}
-	root.left.right = &Node{value: 1}
+	// root.left.left = &Node{value: 7}
+	// root.left.right = &Node{value: 1}
 
-	Inorder(root)
+	// Inorder(root)
 
 }
