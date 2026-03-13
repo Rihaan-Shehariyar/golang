@@ -41,6 +41,26 @@ func Search(root *Node, value int) bool {
 
 }
 
+// func Delete(root *Node, value int) *Node {
+//    if root==nil{
+//   return nil
+// }
+
+//  if value < root.value{
+//   root.left =  Delete(root.left,value)
+// } else if value > root.value {
+// 	root.right = Delete(root.right,value)
+// }else{
+//  if root.left == nil {
+// 	return root.right
+//  }
+// if root.right == nil{
+//    return root.left
+// }
+// }
+
+// }
+
 func Inorder(root *Node) {
 	if root == nil {
 		return
