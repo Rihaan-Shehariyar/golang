@@ -78,6 +78,7 @@ func PreOrder(root *Node) {
 		return
 	}
 
+
 	fmt.Println(root.value, " ")
 	PreOrder(root.left)
 	PreOrder(root.right)
