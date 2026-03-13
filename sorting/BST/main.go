@@ -70,6 +70,7 @@ func Inorder(root *Node) {
 	fmt.Println(root.value)
 	Inorder(root.right)
 
+
 }
 
 func PreOrder(root *Node) {
