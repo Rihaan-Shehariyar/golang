@@ -77,12 +77,12 @@ func (h *Heap) HeapifyDown(index int) {
 			smallest = right
 		}
 
- if index == smallest {
-   break
- }
+		if index == smallest {
+			break
+		}
 
- h.data[index],h.data[smallest] = h.data[smallest],h.data[index]
- index = smallest
+		h.data[index], h.data[smallest] = h.data[smallest], h.data[index]
+		index = smallest
 
 	}
 
