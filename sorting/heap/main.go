@@ -59,6 +59,7 @@ func (h *Heap) ExtractMIn() int {
 	return min
 }
 
+
 func (h *Heap) HeapifyDown(index int) {
 
 	size := len(h.data)
