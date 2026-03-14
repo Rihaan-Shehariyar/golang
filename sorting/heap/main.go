@@ -46,12 +46,17 @@ func (h *Heap) MaxInsert(value int) {
 
 func main() {
 
-	h := MinHeap{}
+	h := Heap{}
+  x := Heap{}
 	h.MinInsert(10)
 	h.MinInsert(5)
 	h.MinInsert(30)
 	h.MinInsert(2)
 	h.MinInsert(1)
+  x.MaxInsert(10)
+  x.MaxInsert(20)
+  x.MaxInsert(50)
 
 	fmt.Println(h.data)
+  fmt.Println(x.data)
 }
