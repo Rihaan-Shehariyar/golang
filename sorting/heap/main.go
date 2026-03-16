@@ -1,6 +1,109 @@
 package main
 
-import "fmt"
+// import "fmt"
+
+// type Heap struct {
+// 	data []int
+// }
+
+// func (h *Heap) MinInsert(value int) {
+
+// 	h.data = append(h.data, value)
+// 	index := len(h.data) - 1
+
+// 	for index > 0 {
+// 		parent := (index - 1) / 2
+
+// 		if h.data[index] < h.data[parent] {
+// 			h.data[index], h.data[parent] = h.data[parent], h.data[index]
+// 			index = parent
+// 		} else {
+// 			break
+// 		}
+// 	}
+
+// }
+
+// func (h *Heap) MaxInsert(value int) {
+
+// 	h.data = append(h.data, value)
+// 	index := len(h.data) - 1
+
+// 	for index > 0 {
+// 		parent := (index - 1) / 2
+
+// 		if h.data[index] > h.data[parent] {
+// 			h.data[index], h.data[parent] = h.data[parent], h.data[index]
+// 			index = parent
+// 		} else {
+// 			break
+
+// 		}
+
+// 	}
+
+// }
+
+// func (h *Heap) ExtractMIn() int {
+
+// 	if len(h.data) == 0 {
+// 		return -1
+// 	}
+
+// 	min := h.data[0]
+
+// 	last := h.data[len(h.data)-1]
+// 	h.data[0] = last
+// 	h.data = h.data[:len(h.data)-1]
+
+// 	return min
+// }
+
+// func (h *Heap) HeapifyDown(index int) {
+
+// 	size := len(h.data)
+
+// 	for {
+
+// 		left := 2*index + 1
+// 		right := 2*index + 2
+// 		smallest := index
+
+// 		if left < size && h.data[left] < h.data[smallest] {
+// 			smallest = left
+// 		}
+
+// 		if right < size && h.data[right] < h.data[smallest] {
+// 			smallest = right
+// 		}
+
+// 		if index == smallest {
+// 			break
+// 		}
+
+// 		h.data[index], h.data[smallest] = h.data[smallest], h.data[index]
+// 		index = smallest
+
+// 	}
+
+// }
+
+// func main() {
+
+// 	h := Heap{}
+// 	x := Heap{}
+// 	h.MinInsert(10)
+// 	h.MinInsert(5)
+// 	h.MinInsert(30)
+// 	h.MinInsert(2)
+// 	h.MinInsert(1)
+// 	x.MaxInsert(10)
+// 	x.MaxInsert(20)
+// 	x.MaxInsert(50)
+
+// 	fmt.Println(h.data)
+// 	fmt.Println(x.data)
+// }
 
 type Heap struct {
 	data []int
@@ -12,6 +115,7 @@ func (h *Heap) MinInsert(value int) {
 	index := len(h.data) - 1
 
 	for index > 0 {
+
 		parent := (index - 1) / 2
 
 		if h.data[index] < h.data[parent] {
@@ -19,24 +123,6 @@ func (h *Heap) MinInsert(value int) {
 			index = parent
 		} else {
 			break
-		}
-	}
-
-}
-
-func (h *Heap) MaxInsert(value int) {
-
-	h.data = append(h.data, value)
-	index := len(h.data) - 1
-
-	for index > 0 {
-		parent := (index - 1) / 2
-
-		if h.data[index] > h.data[parent] {
-			h.data[index], h.data[parent] = h.data[parent], h.data[index]
-			index = parent
-		} else {
-			break
 
 		}
 
@@ -44,19 +130,19 @@ func (h *Heap) MaxInsert(value int) {
 
 }
 
-func (h *Heap) ExtractMIn() int {
-
+func (h *Heap) ExtractMax() int {
 	if len(h.data) == 0 {
 		return -1
 	}
+	max := h.data[0]
+	lastIndex := h.data[len(h.data)-1]
+	h.data[0] = h.data[lastIndex]
+	h.data = h.data[:lastIndex]
 
-	min := h.data[0]
+	h.HeapifyDown(0)
 
-	last := h.data[len(h.data)-1]
-	h.data[0] = last
-	h.data = h.data[:len(h.data)-1]
+	return max
 
-	return min
 }
 
 func (h *Heap) HeapifyDown(index int) {
@@ -67,40 +153,24 @@ func (h *Heap) HeapifyDown(index int) {
 
 		left := 2*index + 1
 		right := 2*index + 2
-		smallest := index
+		largest := index
 
-		if left < size && h.data[left] < h.data[smallest] {
-			smallest = left
+		if left < size && h.data[left] > h.data[largest] {
+			largest = left
 		}
 
-		if right < size && h.data[right] < h.data[smallest] {
-			smallest = right
+		if right < size && h.data[right] > h.data[largest] {
+			largest = right
 		}
 
-		if index == smallest {
+		if largest == index {
 			break
 		}
 
-		h.data[index], h.data[smallest] = h.data[smallest], h.data[index]
-		index = smallest
+		h.data[index], h.data[largest] = h.data[largest], h.data[index]
+
+		index = largest
 
 	}
 
-}
-
-func main() {
-
-	h := Heap{}
-	x := Heap{}
-	h.MinInsert(10)
-	h.MinInsert(5)
-	h.MinInsert(30)
-	h.MinInsert(2)
-	h.MinInsert(1)
-	x.MaxInsert(10)
-	x.MaxInsert(20)
-	x.MaxInsert(50)
-
-	fmt.Println(h.data)
-	fmt.Println(x.data)
 }

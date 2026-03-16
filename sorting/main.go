@@ -1,13 +1,78 @@
 package main
 
-import "fmt"
+// func BubbleSort(arr []int) {
+
+// 	n := len(arr)
+
+// 	for i := 0; i < n-1; i++ {
+
+// 		swapped := false
+
+// 		for j := 0; j < n-i-1; j++ {
+// 			if arr[j] > arr[j+1] {
+// 				arr[j], arr[j+1] = arr[j+1], arr[j]
+// 				swapped = true
+// 			}
+// 		}
+
+// 		if !swapped {
+// 			break
+// 		}
+
+// 	}
+
+// }
+
+// func InsertionSort(arr []int) {
+
+// 	for i := 1; i < len(arr); i++ {
+
+// 		key := arr[i]
+// 		j := i - 1
+// 		for j >= 0 && arr[j] > key {
+// 			arr[j+1] = arr[j]
+// 			j--
+// 		}
+
+// 		arr[j+1] = key
+
+// 	}
+
+// }
+
+// func SelectionSort(arr []int) {
+// 	n := len(arr)
+
+// 	for i := 0; i <= n-1; i++ {
+
+// 		midIndex := i
+
+// 		for j := i + 1; j < n; j++ {
+// 			if arr[j] < arr[midIndex] {
+// 				midIndex = j
+// 			}
+// 		}
+
+// 		arr[i], arr[midIndex] = arr[midIndex], arr[i]
+
+// 	}
+
+// }
+
+// func main() {
+
+// 	arr := []int{5, 6, 1, 7, 8, 8}
+// 	// BubbleSort(arr)
+// 	// InsertionSort(arr)
+// 	SelectionSort(arr)
+// 	fmt.Println(arr)
+
+// }
 
 func BubbleSort(arr []int) {
-
 	n := len(arr)
 
 	for i := 0; i < n-1; i++ {
-
 		swapped := false
 
 		for j := 0; j < n-i-1; j++ {
@@ -15,10 +80,11 @@ func BubbleSort(arr []int) {
 				arr[j], arr[j+1] = arr[j+1], arr[j]
 				swapped = true
 			}
-		}
 
-		if !swapped {
-			break
+			if !swapped {
+				break
+			}
+
 		}
 
 	}
@@ -26,12 +92,15 @@ func BubbleSort(arr []int) {
 }
 
 func InsertionSort(arr []int) {
+	n := len(arr)
 
-	for i := 1; i < len(arr); i++ {
+	for i := 1; i < n-1; i++ {
 
 		key := arr[i]
 		j := i - 1
-		for j >= 0 && arr[j] > key {
+
+		for j <= 0 && arr[j] > key {
+
 			arr[j+1] = arr[j]
 			j--
 		}
@@ -43,30 +112,19 @@ func InsertionSort(arr []int) {
 }
 
 func SelectionSort(arr []int) {
+
 	n := len(arr)
 
-	for i := 0; i <= n-1; i++ {
-
-		midIndex := i
+	for i := 0; i < n-1; i++ {
+		minIndex := i
 
 		for j := i + 1; j < n; j++ {
-			if arr[j] < arr[midIndex] {
-				midIndex = j
+			if arr[j] > arr[minIndex] {
+				minIndex = j
 			}
 		}
 
-		arr[i], arr[midIndex] = arr[midIndex], arr[i]
+		arr[i], arr[minIndex] = arr[minIndex], arr[i]
 
 	}
-
-}
-
-func main() {
-
-	arr := []int{5, 6, 1, 7, 8, 8}
-	// BubbleSort(arr)
-	// InsertionSort(arr)
-	SelectionSort(arr)
-	fmt.Println(arr)
-
 }
