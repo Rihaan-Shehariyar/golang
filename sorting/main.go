@@ -81,12 +81,10 @@ func BubbleSort(arr []int) {
 				swapped = true
 			}
 
-		
-
 		}
-	if !swapped {
-				break
-			}
+		if !swapped {
+			break
+		}
 
 	}
 
@@ -129,4 +127,3 @@ func SelectionSort(arr []int) {
 
 	}
 }
-
