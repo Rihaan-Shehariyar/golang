@@ -204,4 +204,3 @@ func (h *Heap) HeapifyDown(index int) {
 	}
 
 }
-

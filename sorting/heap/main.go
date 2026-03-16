@@ -166,7 +166,7 @@ func (h *Heap) HeapifyDown(index int) {
 		if largest == index {
 			break
 		}
-	
+
 		h.data[index], h.data[largest] = h.data[largest], h.data[index]
 
 		index = largest
