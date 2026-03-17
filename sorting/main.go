@@ -1,6 +1,5 @@
 package main
 
-
 func InsertionSort(arr []int) {
 
 	n := len(arr)
