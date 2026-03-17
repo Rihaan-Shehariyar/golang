@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func BubbleSort(arr []int) {
 
 	n := len(arr)
@@ -225,4 +227,37 @@ func BinarySearch(arr []int, target int) int {
 
 	}
 	return -1
+}
+
+func PreOrder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	fmt.Println(root.data)
+	PreOrder(root.left)
+	PreOrder(root.right)
+
+}
+
+func PostOrder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	PostOrder(root.left)
+	PostOrder(root.right)
+	fmt.Println(root.data)
+
+}
+
+func Inorder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	Inorder(root.left)
+	fmt.Println(root.data)
+	Inorder(root.right)
+
 }
