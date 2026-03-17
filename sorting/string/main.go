@@ -42,20 +42,20 @@ func CheckPalindrome(s string) bool {
 
 }
 
-func VowelCount(s string) int {
+// func VowelCount(s string) int {
 
-	count := 0
+// 	count := 0
 
-	for _, ch := range s {
+// 	for _, ch := range s {
 
-		if strings.Contains("aeiou", string(ch)) {
-			count++
-		}
-	}
+// 		if strings.Contains("aeiou", string(ch)) {
+// 			count++
+// 		}
+// 	}
 
-	return count
+// 	return count
 
-}
+// }
 
 func main() {
 
@@ -68,3 +68,20 @@ func main() {
 
 }
 
+
+
+func VowelCount(str string)int{
+
+ coun := 0
+
+ for _,x := range str{
+ 
+ if strings.Contains("aeiou",string(x)) {
+	coun++
+ }
+ 
+}
+ 
+ return coun
+ 
+}
