@@ -2,26 +2,26 @@ package main
 
 import "fmt"
 
-// func InsertionSort(arr []int) {
+func InsertionSort(arr []int) {
 
-// 	n := len(arr)
+	n := len(arr)
 
-// 	for i := 1; i < n; i++ {
-// 		key := arr[i]
-// 		j := i - 1
+	for i := 1; i < n; i++ {
+		key := arr[i]
+		j := i - 1
 
-// 		for j >= 0 && arr[j] > key {
+		for j >= 0 && arr[j] > key {
 
-// 			arr[j+1] = arr[j]
-// 			j--
+			arr[j+1] = arr[j]
+			j--
 
-// 		}
+		}
 
-// 		arr[j+1] = key
+		arr[j+1] = key
 
-// 	}
+	}
 
-// }
+}
 
 // func Twosums(arr []int, target int) []int {
 
@@ -33,66 +33,58 @@ import "fmt"
 
 // }
 
-// func main() {
 
-// 	b := []int{5, 4, 3, 2}
 
-// 	InsertionSort(b)
+type Node struct {
+	data  int
+	left  *Node
+	right *Node
+}
 
-// 	fmt.Println(b)
+func Insert(root *Node, value int) *Node {
 
-// }
+	if root == nil {
+		return &Node{data: value}
+	}
 
-// type Node struct {
-// 	data  int
-// 	left  *Node
-// 	right *Node
-// }
+	if root.data > value {
+		root.right = Insert(root.right, value)
+	} else {
 
-// func Insert(root *Node, value int) *Node {
+		root.left = Insert(root.left, value)
 
-// 	if root == nil {
-// 		return &Node{data: value}
-// 	}
+	}
 
-// 	if root.data > value {
-// 		root.right = Insert(root.right, value)
-// 	} else {
+	return root
 
-// 		root.left = Insert(root.left, value)
+}
 
-// 	}
+func Inorder(root *Node){
 
-// 	return root
+ if root==nil {
+	return
+ }
 
-// }
+	Inorder(root.left)
+	fmt.Println(root.data)
+	Inorder(root.right)
 
-// func Inorder(root *Node){
+}
 
-//  if root==nil {
-// 	return
-//  }
+func main(){
 
-// 	Inorder(root.left)
-// 	fmt.Println(root.data)
-// 	Inorder(root.right)
+ var root *Node
+ arr := []int{2,3,5,67,3}
 
-// }
+ for _,x := range arr{
 
-// func main(){
+  Insert(root,x)
 
-//  var root *Node
-//  arr := []int{2,3,5,67,3}
+}
+ fmt.Println("Inorder")
+ Inorder(root)
 
-//  for _,x := range arr{
-
-//   Insert(root,x)
-
-// }
-//  fmt.Println("Inorder")
-//  Inorder(root)
-
-// }
+}
 
 type Heap struct {
 	arr []int
