@@ -71,20 +71,20 @@ func Inorder(root *Node){
 
 }
 
-func main(){
+// func main(){
 
- var root *Node
- arr := []int{2,3,5,67,3}
+//  var root *Node
+//  arr := []int{2,3,5,67,3}
 
- for _,x := range arr{
+//  for _,x := range arr{
 
-  Insert(root,x)
+//   Insert(root,x)
 
-}
- fmt.Println("Inorder")
- Inorder(root)
+// }
+//  fmt.Println("Inorder")
+//  Inorder(root)
 
-}
+// }
 
 type Heap struct {
 	arr []int
