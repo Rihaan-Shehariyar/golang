@@ -33,8 +33,6 @@ func InsertionSort(arr []int) {
 
 // }
 
-
-
 type Node struct {
 	data  int
 	left  *Node
@@ -59,11 +57,11 @@ func Insert(root *Node, value int) *Node {
 
 }
 
-func Inorder(root *Node){
+func Inorder(root *Node) {
 
- if root==nil {
-	return
- }
+	if root == nil {
+		return
+	}
 
 	Inorder(root.left)
 	fmt.Println(root.data)
