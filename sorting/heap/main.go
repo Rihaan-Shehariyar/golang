@@ -1,12 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Heap struct {
 	data []int
 }
-
-
 
 func (h *Heap) MaxInsert(value int) {
 
@@ -89,8 +89,6 @@ func main() {
 	fmt.Println(x.data)
 }
 
-
-
 func (h *Heap) MinInsert(value int) {
 
 	h.data = append(h.data, value)
@@ -111,19 +109,3 @@ func (h *Heap) MinInsert(value int) {
 	}
 
 }
-
-func (h *Heap) ExtractMax() int {
-	if len(h.data) == 0 {
-		return -1
-	}
-	max := h.data[0]
-	lastIndex := h.data[len(h.data)-1]
-	h.data[0] = h.data[lastIndex]
-	h.data = h.data[:lastIndex]
-
-	h.HeapifyDown(0)
-
-	return max
-
-}
-

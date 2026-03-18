@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Node struct {
 	data  int
 	left  *Node
@@ -75,4 +77,80 @@ func Delete(root *Node, value int) *Node {
 
 	return root
 
+}
+
+func PreOrder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	fmt.Println(root.data)
+	PreOrder(root.left)
+	PreOrder(root.right)
+
+}
+
+func PostOrder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	PostOrder(root.left)
+	PostOrder(root.right)
+	fmt.Println(root.data)
+
+}
+
+func Inorder(root *Node) {
+	if root == nil {
+		return
+	}
+
+	Inorder(root.left)
+	fmt.Println(root.data)
+	Inorder(root.right)
+
+}
+
+func main() {
+
+	var root *Node
+
+	arr := []int{1, 4, 6, 7, 8, 9}
+
+	for _, v := range arr {
+		root = Insert(root, v)
+	}
+
+	PostOrder(root)
+
+}
+
+
+func DeleteN(root *Node,value int)*Node{
+
+ if root == nil {
+	return nil
+ }
+
+ if root.data > value {
+    root.right = Delete(root.right,value)
+ }else if root.data < value {
+	 root.left = Delete(root.left,value)
+ }else{
+ 
+ if root.left == nil {
+	return root.right
+ }
+ if root.right == nil {
+	return root.left
+ }
+
+ min := findMin(root.right)
+ root.data = min.data
+ root.right = Delete(root.right,min.data)
+
+}
+
+return root
 }

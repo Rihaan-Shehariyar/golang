@@ -66,6 +66,14 @@ func main() {
 	fmt.Println(CheckPalindrome(c))
 	fmt.Println(VowelCount(c))
 
+ set := make(map[int]bool)
+
+ set[10] = true
+
+ if set[10] {
+	println("exists")
+ }
+
 }
 
 
@@ -84,4 +92,21 @@ func VowelCount(str string)int{
  
  return coun
  
+}
+
+func ReverseStrings(Str string)string{
+
+ b := []rune(Str)
+
+ i := 0
+ j := len(b)-1
+
+ for i < j{
+  b[i],b[j] = b[j],b[i]
+  i++
+  j--
+}
+
+ return string(b)
+
 }
