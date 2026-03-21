@@ -24,6 +24,8 @@ func Insert(root *Node, value int) *Node {
 
 }
 
+
+
 func Search(root *Node, value int) bool {
 
 
