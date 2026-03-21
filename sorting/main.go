@@ -50,6 +50,7 @@ func SelectionSort(arr []int) {
 			if arr[minIndex] > arr[j] {
 				minIndex = j
 			} else {
+
 				break
 			}
 		}
