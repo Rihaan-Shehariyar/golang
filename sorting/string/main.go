@@ -66,6 +66,7 @@ func main() {
 	fmt.Println(CheckPalindrome(c))
 	fmt.Println(VowelCount(c))
 
+
  set := make(map[int]bool)
 
  set[10] = true
