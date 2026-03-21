@@ -71,6 +71,7 @@ func main() {
 
  set[10] = true
 
+
  if set[10] {
 	println("exists")
  }
