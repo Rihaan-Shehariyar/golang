@@ -6,7 +6,6 @@ import (
 
 type Heap struct {
 	data []int
-
 }
 
 func (h *Heap) MaxInsert(value int) {
