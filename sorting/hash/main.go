@@ -11,7 +11,6 @@ func main() {
 
 	freq := make(map[string]int)
 
-
 	words := strings.Fields(text)
 
 	for _, word := range words {
