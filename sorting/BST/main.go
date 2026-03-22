@@ -24,10 +24,7 @@ func Insert(root *Node, value int) *Node {
 
 }
 
-
-
 func Search(root *Node, value int) bool {
-
 
 	if root == nil {
 		return false
@@ -129,31 +126,30 @@ func main() {
 
 }
 
+func DeleteN(root *Node, value int) *Node {
 
-func DeleteN(root *Node,value int)*Node{
+	if root == nil {
+		return nil
+	}
 
- if root == nil {
-	return nil
- }
+	if root.data > value {
+		root.right = Delete(root.right, value)
+	} else if root.data < value {
+		root.left = Delete(root.left, value)
+	} else {
 
- if root.data > value {
-    root.right = Delete(root.right,value)
- }else if root.data < value {
-	 root.left = Delete(root.left,value)
- }else{
- 
- if root.left == nil {
-	return root.right
- }
- if root.right == nil {
-	return root.left
- }
+		if root.left == nil {
+			return root.right
+		}
+		if root.right == nil {
+			return root.left
+		}
 
- min := findMin(root.right)
- root.data = min.data
- root.right = Delete(root.right,min.data)
+		min := findMin(root.right)
+		root.data = min.data
+		root.right = Delete(root.right, min.data)
 
-}
+	}
 
-return root
+	return root
 }

@@ -39,7 +39,6 @@ func BubbleSort(arr []int) {
 
 }
 
-
 func SelectionSort(arr []int) {
 	n := len(arr)
 
@@ -60,4 +59,3 @@ func SelectionSort(arr []int) {
 	}
 
 }
-
