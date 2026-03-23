@@ -6,7 +6,6 @@ type Graph struct {
 	adjList map[int][]int
 }
 
-
 func NewGraph() *Graph {
 	return &Graph{
 		adjList: make(map[int][]int),
