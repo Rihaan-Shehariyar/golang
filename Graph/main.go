@@ -7,12 +7,14 @@ type Graph struct {
 	adjList map[int][]int
 }
 
+
 // Initialize graph
 func NewGraph() *Graph {
 	return &Graph{
 		adjList: make(map[int][]int),
 	}
 }
+
 
 // Add edge (undirected)
 func (g *Graph) AddEdge(u, v int) {
