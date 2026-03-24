@@ -6,7 +6,6 @@ type GraphDfs struct {
 	adj map[int][]int
 }
 
-
 func (g *GraphDfs) AddEdge(u, v int) {
 	g.adj[u] = append(g.adj[u], v)
 	g.adj[v] = append(g.adj[v], u)
