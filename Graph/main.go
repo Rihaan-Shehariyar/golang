@@ -7,29 +7,27 @@ type Graph struct {
 }
 
 func NewGraph() *Graph {
-	return &Graph{
-		adjList: make(map[int][]int),
-	}
+	return &Graph{adjList: make(map[int][]int)}
 }
-
 
 func (g *Graph) AddEdge(u, v int) {
 	g.adjList[u] = append(g.adjList[u], v)
 	g.adjList[v] = append(g.adjList[v], u)
 }
 
-func (g *Graph) Print() {
-	for node, neighbors := range g.adjList {
-		fmt.Printf("%d -> %v\n", node, neighbors)
+func (g *Graph) PrintGraph() {
+	for node, neighbours := range g.adjList {
+		fmt.Printf("%d->%v\n", node, neighbours)
 	}
 }
 
 func main() {
-	graph := NewGraph()
+	g := NewGraph()
 
-	graph.AddEdge(1, 2)
-	graph.AddEdge(1, 3)
-	graph.AddEdge(2, 4)
+	g.AddEdge(1, 2)
+	g.AddEdge(1, 3)
+	g.AddEdge(2, 4)
 
-	graph.Print()
+ g.PrintGraph()
+
 }
