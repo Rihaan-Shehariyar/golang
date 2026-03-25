@@ -17,6 +17,7 @@ func (g *GraphDfs) DfSStack(start int) {
 	stack := []int{start}
 
 	for len(stack) > 0 {
+
 		node := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 
