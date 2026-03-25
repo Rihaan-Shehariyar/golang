@@ -15,8 +15,8 @@ func (g *Graph) AddEdge(u, v int) {
 	g.adjList[v] = append(g.adjList[v], u)
 }
 
-func (g *Graph) AddDirectEdge(u,v int){
-  g.adjList[u] = append(g.adjList[u], v)
+func (g *Graph) AddDirectEdge(u, v int) {
+	g.adjList[u] = append(g.adjList[u], v)
 }
 
 func (g *Graph) PrintGraph() {
