@@ -2,51 +2,47 @@ package main
 
 import "fmt"
 
-// Graph structure
-type Graphbfs struct {
+type GraphBfs struct {
 	adj map[int][]int
 }
 
-// Add edge (undirected)
-func (g *Graphbfs) AddEdge(u, v int) {
+func (g *GraphBfs) AddEdge(u, v int) {
 	g.adj[u] = append(g.adj[u], v)
-	g.adj[v] = append(g.adj[v], u)
 }
 
-// BFS using queue
-func (g *Graphbfs) BFS(start int) {
+func (g *GraphBfs) BFS(start int) {
 	visited := make(map[int]bool)
-
-	// queue
 	queue := []int{start}
 	visited[start] = true
 
 	for len(queue) > 0 {
-		// dequeue (first element)
+
 		node := queue[0]
 		queue = queue[1:]
 
-		fmt.Print(node, " ")
+		fmt.Println(node, "")
 
-		// visit neighbors
-		for _, neighbor := range g.adj[node] {
-			if !visited[neighbor] {
-				visited[neighbor] = true
-				queue = append(queue, neighbor)
+		for _, neigbours := range g.adj[node] {
+			if !visited[neigbours] {
+				visited[neigbours] = true
+				queue = append(queue, neigbours)
 			}
 		}
+
 	}
+
 }
 
-// func main() {
-// 	g := Graphbfs{
-// 		adj: make(map[int][]int),
-// 	}
+	// func main(){
+	
+	//  g := GraphBfs{
+	//  adj: map[int][]int{},
+	// }
 
-// 	g.AddEdge(1, 2)
-// 	g.AddEdge(1, 3)
-// 	g.AddEdge(2, 4)
+	// g.AddEdge(1,3)
+	// g.AddEdge(1,2)
+	// g.AddEdge(2,4)
 
-// 	fmt.Println("BFS Traversal:")
-// 	g.BFS(1)
-// }
+	// g.BFS(1)
+
+	// }

@@ -36,16 +36,16 @@ func (g *GraphDfs) DfSStack(start int) {
 
 }
 
-func main() {
+// func main() {
 
-	g := GraphDfs{
-		adj: make(map[int][]int),
-	}
+// 	g := GraphDfs{
+// 		adj: make(map[int][]int),
+// 	}
 
-	g.AddEdge(1, 2)
-	g.AddEdge(1, 3)
-	g.AddEdge(2, 4)
+// 	g.AddEdge(1, 2)
+// 	g.AddEdge(1, 3)
+// 	g.AddEdge(2, 4)
 
-	g.DfSStack(1)
+// 	g.DfSStack(1)
 
-}
+// }
