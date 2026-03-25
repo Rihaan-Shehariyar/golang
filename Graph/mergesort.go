@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+// import "fmt"
 
 func mergeSort(arr []int) []int {
 
@@ -40,12 +40,12 @@ func merge(left, right []int) []int {
 
 }
 
-func main() {
-	arr := []int{8, 3, 1, 7, 0, 10, 2}
+// func main() {
+// 	arr := []int{8, 3, 1, 7, 0, 10, 2}
 
-	fmt.Println("Before:", arr)
+// 	fmt.Println("Before:", arr)
 
-	arr = mergeSort(arr)
+// 	arr = mergeSort(arr)
 
-	fmt.Println("After :", arr)
-}
+// 	fmt.Println("After :", arr)
+// }
