@@ -7,6 +7,7 @@ func QuickSort(arr []int, low, high int) {
 	if low < high {
 		pivotIndex := Partition(arr, low, high)
 		QuickSort(arr, low, pivotIndex-1)
+
 		QuickSort(arr, pivotIndex+1, high)
 	}
 
