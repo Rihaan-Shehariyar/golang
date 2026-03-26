@@ -25,12 +25,12 @@ func (g *GraphDfs) DfSStack(start int) {
 			visited[node] = true
 			fmt.Print(node, "")
 
-			for _, neigbour := range g.adj[node] {
-				if !visited[neigbour] {
-					stack = append(stack, neigbour)
+			for i := len(g.adj[node]) - 1; i >= 0; i-- {
+				neighbour := g.adj[node][i]
+				if !visited[neighbour] {
+					stack = append(stack, neighbour)
 				}
 			}
-
 		}
 
 	}

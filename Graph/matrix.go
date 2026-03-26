@@ -32,12 +32,15 @@ func (g *GraphMatrix) Print() {
 		fmt.Println(g.matrix[i])
 	}
 }
-func main() {
-	g := NewGraphMatrix(4)
 
-	g.AddEdge(0, 1)
-	g.AddEdge(0, 2)
-	g.AddEdge(1, 3)
 
-	g.Print()
-}
+
+// func main() {
+// 	g := NewGraphMatrix(4)
+
+// 	g.AddEdge(0, 1)
+// 	g.AddEdge(0, 2)
+// 	g.AddEdge(1, 3)
+
+// 	g.Print()
+// }
