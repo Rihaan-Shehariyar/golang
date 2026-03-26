@@ -33,8 +33,6 @@ func (g *GraphMatrix) Print() {
 	}
 }
 
-
-
 // func main() {
 // 	g := NewGraphMatrix(4)
 
