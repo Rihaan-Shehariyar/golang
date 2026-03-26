@@ -33,16 +33,16 @@ func (g *GraphBfs) BFS(start int) {
 
 }
 
-	// func main(){
-	
-	//  g := GraphBfs{
-	//  adj: map[int][]int{},
-	// }
+// func main(){
 
-	// g.AddEdge(1,3)
-	// g.AddEdge(1,2)
-	// g.AddEdge(2,4)
+//  g := GraphBfs{
+//  adj: map[int][]int{},
+// }
 
-	// g.BFS(1)
+// g.AddEdge(1,3)
+// g.AddEdge(1,2)
+// g.AddEdge(2,4)
 
-	// }
+// g.BFS(1)
+
+// }
