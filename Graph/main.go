@@ -162,17 +162,34 @@ func (g *Graph) bfs(start int) {
 
 }
 
-func main() {
-	g := NewGraph()
+// func main() {
+// 	g := NewGraph()
 
-	// g := newGraphMatrix(3)
+// 	// g := newGraphMatrix(3)
 
-	g.AddEdge(1, 2)
-	g.AddEdge(1, 3)
-	g.AddEdge(2, 4)
+// 	g.AddEdge(1, 2)
+// 	g.AddEdge(1, 3)
+// 	g.AddEdge(2, 4)
 
-	g.dfs(1)
+// 	g.dfs(1)
 
-	// g.Print()
+// 	// g.Print()
+
+// }
+
+func Partitions(arr []int, low, high int)int {
+	pivot := arr[high]
+	i := low - 1
+
+	for j := low; j < high; j++ {
+		if arr[j] > pivot {
+			i++
+			arr[j], arr[i] = arr[i], arr[j]
+		}
+	}
+
+ arr[i+1],arr[high] = arr[high],arr[i+1]
+ 
+return i+1
 
 }
