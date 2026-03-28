@@ -48,8 +48,8 @@ func main() {
 
 	// fmt.Print(sortded)
 
- g := NewGraph();	
- 
+	g := NewGraph()
+
 	g.AddEdge(1, 2)
 	g.AddEdge(1, 3)
 	g.AddEdge(2, 4)
@@ -71,6 +71,8 @@ func (g *graph) AddEdge(u, v int) {
 }
 
 func (g *graph) DFS(start int) {
+
+
 
 	visited := make(map[int]bool)
 	stack := []int{start}
