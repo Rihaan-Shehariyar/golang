@@ -48,7 +48,7 @@ func main() {
 
 	// fmt.Print(sortded)
 
- g := NewGraph()	
+ g := NewGraph();	
  
 	g.AddEdge(1, 2)
 	g.AddEdge(1, 3)
