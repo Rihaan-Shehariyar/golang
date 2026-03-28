@@ -72,8 +72,6 @@ func (g *graph) AddEdge(u, v int) {
 
 func (g *graph) DFS(start int) {
 
-
-
 	visited := make(map[int]bool)
 	stack := []int{start}
 
