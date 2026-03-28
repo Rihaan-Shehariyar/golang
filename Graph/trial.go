@@ -8,6 +8,7 @@ type graphs struct {
 	adjList map[int][]int
 }
 
+
 func newgraph() *graphs {
 	return &graphs{adjList: map[int][]int{}}
 }
