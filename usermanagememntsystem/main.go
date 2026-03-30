@@ -15,9 +15,8 @@ package main
 
 // )
 
-
 //   r := gin.Default()
- 
+
 //   routes.SetUpRoutes(r)
 
 //  r.Run(":9090")
