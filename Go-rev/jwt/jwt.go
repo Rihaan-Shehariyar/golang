@@ -1,10 +1,10 @@
 package jwt
 
 import (
-	"strings"
+	// "strings"
 	"time"
 
-	"github.com/gin-gonic/gin"
+	// "github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 )
 
@@ -89,24 +89,3 @@ func AccessToken(email string,role string)(string,error){
 
 
 
-
-func JwtAut()gin.HandlerFunc{
- return func(ctx *gin.Context) {
-
-  auth := ctx.GetHeader("Authorization")
- if auth == ""{
- return 
-}
-
- tokenstr := strings.TrimPrefix(auth," Bearer")
- claims = claims{}
-
- token ,err := jwt.ParseWithClaims(tokenstr,claims{},func(t *jwt.Token) (any, error) {
-  return jwtsecret,nil
-})
-
- 
- 
-
-}
-}
