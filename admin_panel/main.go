@@ -23,10 +23,10 @@ func main() {
 	admin.Use(middleware.JwtMiddleWare(), middleware.AdminOnly())
 	{
 
-		admin.GET("/users", handlers.GetAllUsers)
-		admin.POST("/users", handlers.CreateUserbyAdmin)
-		admin.PUT("/users/:id", handlers.UpdateUser)
-		admin.DELETE("/users/:id", handlers.DeleteUser)
+		admin.GET("/users", handlers.GetAllUser)
+		// admin.POST("/users", handlers.CreateUserbyAdmin)
+		// admin.PUT("/users/:id", handlers.UpdateUser)
+		// admin.DELETE("/users/:id", handlers.DeleteUser)
 
 	}
 
