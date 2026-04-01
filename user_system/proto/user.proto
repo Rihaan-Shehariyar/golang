@@ -5,9 +5,9 @@ package user;
 option go_package = "user/proto";
 
 service UserService{
-  rpc CreateUser(CreateUserRequest) return (UserResponse);
-  rpc GetUser(GetUserRequest) return (UserResponse);
-  rpc ListUser(Empty) return (ListUserResponse);
+  rpc CreateUser(CreateUserRequest) returns (UserResponse);
+  rpc GetUser(GetUserRequest) returns (UserResponse);
+  rpc ListUser(Empty) returns (ListUsersResponse);
 }
 
 message User {
