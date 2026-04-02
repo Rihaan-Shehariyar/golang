@@ -2,7 +2,6 @@ package repository
 
 import (
 	"database/sql"
-	"fmt"
 )
 
 type User struct {
@@ -37,7 +36,7 @@ func (r *UserRepository) CreateUser(name, email string) (*User, error) {
 
 func (r *UserRepository) GetUser(id int32) (*User, error) {
 
-	row := r.DB.QueryRow("SELECT id,name,email FROM users WHERE id = &1", id)
+	row := r.DB.QueryRow("SELECT id,name,email FROM users WHERE id = $1", id)
 
 	user := &User{}
 	err := row.Scan(&user.ID, &user.Name, &user.Email)
@@ -50,9 +49,9 @@ func (r *UserRepository) GetUser(id int32) (*User, error) {
 
 }
 func (r *UserRepository) ListUser() ([]*User, error) {
-	rows, err := r.DB.Query("SELECT id,name,email from users")
+	rows, err := r.DB.Query("SELECT id,name,email FROM users")
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 
 	defer rows.Close()
@@ -66,6 +65,10 @@ func (r *UserRepository) ListUser() ([]*User, error) {
 			return nil, err
 		}
 		users = append(users, u)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, err
 	}
 
 	return users, nil

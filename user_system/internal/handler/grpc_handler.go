@@ -49,7 +49,7 @@ func (h *UserHandler) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.
 
 }
 
-func (h *UserHandler) ListUsers(ctc context.Context, _ *pb.Empty) (*pb.ListUsersResponse, error) {
+func (h *UserHandler) ListUser(ctc context.Context, _ *pb.Empty) (*pb.ListUsersResponse, error) {
 
 	users, err := h.service.ListUser()
 
