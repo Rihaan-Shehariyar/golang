@@ -7,7 +7,8 @@ import (
 	"order_service/internal/handler"
 	"order_service/internal/repository"
 	"order_service/internal/service"
-    _ "github.com/lib/pq"
+
+	_ "github.com/lib/pq"
 
 	pb "shared-proto/order"
 	userpb "shared-proto/user"
