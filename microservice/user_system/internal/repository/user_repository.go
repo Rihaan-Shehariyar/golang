@@ -5,10 +5,10 @@ import (
 )
 
 type User struct {
-	ID    int32
-	Name  string
-	Email string
-    Password string
+	ID       int32
+	Name     string
+	Email    string
+	Password string
 }
 
 type UserRepository struct {
@@ -23,7 +23,7 @@ func (r *UserRepository) CreateUser(name, email, password string) (*User, error)
 	var id int32
 
 	err := r.DB.QueryRow(
-		"INSERT INTO users(name,email,password) VALUES($1, $2) RETURNING id",
+		"INSERT INTO users(name,email,password) VALUES($1, $2, $3) RETURNING id",
 		name, email, password,
 	).Scan(&id)
 
@@ -31,7 +31,7 @@ func (r *UserRepository) CreateUser(name, email, password string) (*User, error)
 		return nil, err
 	}
 
-	return &User{ID: id, Name: name, Email: email}, nil
+	return &User{ID: id, Name: name, Email: email, Password: password}, nil
 
 }
 

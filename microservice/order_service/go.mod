@@ -3,12 +3,12 @@ module order_service
 go 1.24.3
 
 require (
+	github.com/lib/pq v1.12.2
 	google.golang.org/grpc v1.80.0
-	shared-proto v0.0.0-00010101000000-000000000000
+	shared-proto v0.0.0
 )
 
 require (
-	github.com/lib/pq v1.12.2 // indirect
 	golang.org/x/net v0.49.0 // indirect
 	golang.org/x/sys v0.40.0 // indirect
 	golang.org/x/text v0.33.0 // indirect

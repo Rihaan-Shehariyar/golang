@@ -18,7 +18,7 @@ func NewClients() *Clients {
 	if err != nil {
 		log.Fatal(err)
 	}
-	orderConn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	orderConn, err := grpc.Dial("localhost:50052", grpc.WithInsecure())
 	if err != nil {
 		log.Fatal(err)
 	}
