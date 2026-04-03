@@ -8,6 +8,7 @@ type User struct {
 	ID    int32
 	Name  string
 	Email string
+    Password string
 }
 
 type UserRepository struct {
@@ -18,12 +19,12 @@ func NewUserRepository(db *sql.DB) *UserRepository {
 	return &UserRepository{DB: db}
 }
 
-func (r *UserRepository) CreateUser(name, email string) (*User, error) {
+func (r *UserRepository) CreateUser(name, email, password string) (*User, error) {
 	var id int32
 
 	err := r.DB.QueryRow(
-		"INSERT INTO users(name,email) VALUES($1, $2) RETURNING id",
-		name, email,
+		"INSERT INTO users(name,email,password) VALUES($1, $2) RETURNING id",
+		name, email, password,
 	).Scan(&id)
 
 	if err != nil {
@@ -47,6 +48,20 @@ func (r *UserRepository) GetUser(id int32) (*User, error) {
 
 	return user, nil
 
+}
+
+func (r *UserRepository) GetUserByEmail(email string) (*User, error) {
+	row := r.DB.QueryRow(
+		"SELECT id,name,email,password FROM users WHERE email=$1", email,
+	)
+
+	u := &User{}
+	err := row.Scan(&u.ID, &u.Name, &u.Email, &u.Password)
+	if err != nil {
+		return nil, err
+	}
+
+	return u, nil
 }
 func (r *UserRepository) ListUser() ([]*User, error) {
 	rows, err := r.DB.Query("SELECT id,name,email FROM users")

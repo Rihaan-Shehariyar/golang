@@ -2,7 +2,8 @@ package handler
 
 import (
 	"context"
-	pb "user_system/user/proto"
+	"fmt"
+	pb "shared-proto/user"
 	"user_system/internal/service"
 )
 
@@ -17,7 +18,7 @@ func NewUserHandler(s *service.UserService) *UserHandler {
 
 func (h *UserHandler) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.UserResponse, error) {
 
-	user, err := h.service.CreateUser(req.Name, req.Email)
+	user, err := h.service.CreateUser(req.Name, req.Email, req.Password)
 	if err != nil {
 		return nil, err
 	}
@@ -28,6 +29,19 @@ func (h *UserHandler) CreateUser(ctx context.Context, req *pb.CreateUserRequest)
 			Name:  user.Name,
 			Email: user.Email,
 		},
+	}, nil
+
+}
+
+func (h *UserHandler) Login(ctc context.Context, req *pb.LoginRequest) (*pb.LoginResponse, error) {
+
+	_, err := h.service.Login(req.Email, req.Password)
+	if err != nil {
+		return nil, fmt.Errorf("Invalid Credentials")
+	}
+
+	return &pb.LoginResponse{
+		Token: "valid-Token",
 	}, nil
 
 }
