@@ -7,7 +7,7 @@ import (
 	"user_system/internal/handler"
 	"user_system/internal/repository"
 	"user_system/internal/service"
-	pb "user_system/user/proto"
+	pb "shared-proto/user"
 
 	"google.golang.org/grpc"
 )
