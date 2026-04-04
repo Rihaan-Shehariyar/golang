@@ -111,7 +111,6 @@ func CreateOrder(c *gin.Context, client orderpb.OrderServiceClient) {
 	c.JSON(200, res)
 }
 
-// 📦 Get Order
 func GetOrder(c *gin.Context, client orderpb.OrderServiceClient) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
