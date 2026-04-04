@@ -41,9 +41,9 @@ func CreateUser(c *gin.Context, client userpb.UserServiceClient) {
 	defer cancel()
 
 	res, err := client.CreateUser(ctx, &userpb.CreateUserRequest{
-		Name:  req.Name,
-		Email: req.Email,
-        Password: req.Password,
+		Name:     req.Name,
+		Email:    req.Email,
+		Password: req.Password,
 	})
 
 	if err != nil {
