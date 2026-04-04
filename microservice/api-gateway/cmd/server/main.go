@@ -15,8 +15,6 @@ func main() {
 
 	routes.Setup(r, clients)
 
-  
-
 	r.Run(":8080")
 
 }
