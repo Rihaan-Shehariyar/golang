@@ -19,14 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	HelloService_SayHello_FullMethodName = "/user.HelloService/SayHello"
+	HelloService_CreateUser_FullMethodName = "/user.HelloService/CreateUser"
+	HelloService_GetUser_FullMethodName    = "/user.HelloService/GetUser"
+	HelloService_ListUsers_FullMethodName  = "/user.HelloService/ListUsers"
 )
 
 // HelloServiceClient is the client API for HelloService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HelloServiceClient interface {
-	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error)
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	ListUsers(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserListResponse, error)
 }
 
 type helloServiceClient struct {
@@ -37,10 +41,30 @@ func NewHelloServiceClient(cc grpc.ClientConnInterface) HelloServiceClient {
 	return &helloServiceClient{cc}
 }
 
-func (c *helloServiceClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloResponse, error) {
+func (c *helloServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HelloResponse)
-	err := c.cc.Invoke(ctx, HelloService_SayHello_FullMethodName, in, out, cOpts...)
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, HelloService_CreateUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *helloServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserResponse)
+	err := c.cc.Invoke(ctx, HelloService_GetUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *helloServiceClient) ListUsers(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*UserListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserListResponse)
+	err := c.cc.Invoke(ctx, HelloService_ListUsers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +75,9 @@ func (c *helloServiceClient) SayHello(ctx context.Context, in *HelloRequest, opt
 // All implementations must embed UnimplementedHelloServiceServer
 // for forward compatibility.
 type HelloServiceServer interface {
-	SayHello(context.Context, *HelloRequest) (*HelloResponse, error)
+	CreateUser(context.Context, *CreateUserRequest) (*UserResponse, error)
+	GetUser(context.Context, *GetUserRequest) (*UserResponse, error)
+	ListUsers(context.Context, *Empty) (*UserListResponse, error)
 	mustEmbedUnimplementedHelloServiceServer()
 }
 
@@ -62,8 +88,14 @@ type HelloServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedHelloServiceServer struct{}
 
-func (UnimplementedHelloServiceServer) SayHello(context.Context, *HelloRequest) (*HelloResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SayHello not implemented")
+func (UnimplementedHelloServiceServer) CreateUser(context.Context, *CreateUserRequest) (*UserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CreateUser not implemented")
+}
+func (UnimplementedHelloServiceServer) GetUser(context.Context, *GetUserRequest) (*UserResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUser not implemented")
+}
+func (UnimplementedHelloServiceServer) ListUsers(context.Context, *Empty) (*UserListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListUsers not implemented")
 }
 func (UnimplementedHelloServiceServer) mustEmbedUnimplementedHelloServiceServer() {}
 func (UnimplementedHelloServiceServer) testEmbeddedByValue()                      {}
@@ -86,20 +118,56 @@ func RegisterHelloServiceServer(s grpc.ServiceRegistrar, srv HelloServiceServer)
 	s.RegisterService(&HelloService_ServiceDesc, srv)
 }
 
-func _HelloService_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloRequest)
+func _HelloService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(HelloServiceServer).SayHello(ctx, in)
+		return srv.(HelloServiceServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: HelloService_SayHello_FullMethodName,
+		FullMethod: HelloService_CreateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelloServiceServer).SayHello(ctx, req.(*HelloRequest))
+		return srv.(HelloServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HelloService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HelloServiceServer).GetUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HelloService_GetUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HelloServiceServer).GetUser(ctx, req.(*GetUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _HelloService_ListUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HelloServiceServer).ListUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HelloService_ListUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HelloServiceServer).ListUsers(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +180,16 @@ var HelloService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*HelloServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SayHello",
-			Handler:    _HelloService_SayHello_Handler,
+			MethodName: "CreateUser",
+			Handler:    _HelloService_CreateUser_Handler,
+		},
+		{
+			MethodName: "GetUser",
+			Handler:    _HelloService_GetUser_Handler,
+		},
+		{
+			MethodName: "ListUsers",
+			Handler:    _HelloService_ListUsers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -5,13 +5,34 @@ package user;
 option go_package = "proto/user";
 
 service HelloService{
-  rpc SayHello(HelloRequest) returns(HelloResponse);
+  rpc CreateUser(CreateUserRequest) returns(UserResponse);
+  rpc GetUser(GetUserRequest) returns(UserResponse);
+  rpc ListUsers(empty) returns(UserListResponse);
 }
 
-message HelloRequest{
-  string name = 1;
+message CreateUserRequest{
+ string Name =2; 
+ int32 Age = 3;
+ string Email = 4;
 }
 
-message HelloResponse{
-  string name = 1;
+message GetUserRequest {
+ int32 id = 1;
+}
+
+message User{
+ int32 id = 1;
+ string Name =2;
+ int32 Age = 3;
+ string Email = 4;
+}
+
+message UserResponse{
+ User user = 1;
+}
+
+message empty{}
+
+message UserListResponse{
+  repeated User user = 1;
 }
