@@ -21,6 +21,7 @@ func main() {
 	connstr := "user=postgres password=Rihaan@123 dbname=ecommerce host=localhost port=5432 sslmode=disable"
 
 	db, err := sql.Open("postgres", connstr)
+
 	if err != nil {
 		log.Fatal(err)
 	}
