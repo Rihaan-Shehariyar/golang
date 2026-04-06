@@ -2,7 +2,11 @@ package main
 
 import (
 	"context"
+	"log"
+	"net"
 	pb "test/proto/user"
+
+	"google.golang.org/grpc"
 )
 
 // type server struct {
@@ -136,6 +140,40 @@ func (s *server) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb
 
 }
 
+func (s *server) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.UserResponse, error) {
+	user, ok := s.users[req.Id]
+	if !ok {
+		return nil, nil
+	}
+
+	return &pb.UserResponse{User: user}, nil
+
+}
+
+func (s *server) ListUsers(ctx context.Context, _ *pb.Empty) (*pb.UserListResponse, error) {
+
+	var users []*pb.User
+
+	for _, u := range s.users {
+		users = append(users, u)
+	}
+
+	return &pb.UserListResponse{User: users}, nil
+
+}
+
 func main() {
+
+	lis, err := net.Listen("tcp", "50051")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	grpcServer := grpc.NewServer()
+	g := newServer()
+
+	pb.RegisterHelloServiceServer(grpcServer, g)
+
+	grpcServer.Serve(lis)
 
 }

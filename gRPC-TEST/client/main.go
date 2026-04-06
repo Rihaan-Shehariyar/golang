@@ -9,12 +9,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-// "context"
-// "log"
-//
-// "time"
-
-// "google.golang.org/grpc"
 
 // func main() {
 
@@ -74,3 +68,24 @@ func main() {
 
 	log.Println("All Users :", listUser)
 }
+
+// func main(){
+ 
+//  conn,err := grpc.Dial("localhost:50051",grpc.WithInsecure())
+//  if err!=nil {
+// 	log.Fatal(err)
+//  }
+
+//  defer conn.Close()
+
+//  client := pb.NewHelloServiceClient(conn)
+
+//  ctx,cancel := context.WithTimeout(context.Background(),time.Second)
+//  defer cancel()
+
+// CreateUser,_ := client.CreateUser(ctx,&pb.CreateUserRequest{
+//  Name: "",
+// })
+ 
+ 
+// }
