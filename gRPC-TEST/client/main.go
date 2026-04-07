@@ -9,7 +9,6 @@ import (
 	"google.golang.org/grpc"
 )
 
-
 // func main() {
 
 // 	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
@@ -70,7 +69,7 @@ func main() {
 }
 
 // func main(){
- 
+
 //  conn,err := grpc.Dial("localhost:50051",grpc.WithInsecure())
 //  if err!=nil {
 // 	log.Fatal(err)
@@ -86,6 +85,5 @@ func main() {
 // CreateUser,_ := client.CreateUser(ctx,&pb.CreateUserRequest{
 //  Name: "",
 // })
- 
- 
+
 // }
