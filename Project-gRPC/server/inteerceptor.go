@@ -27,12 +27,13 @@ func AuthInterceptor(
 		return nil, status.Error(codes.Unauthenticated, "metadata missing")
 	}
 
-	token := md["Authorization"]
-	if len(token) == 0 {
+	values := md.Get("authorization")
+	if len(values) == 0 {
 		return nil, status.Error(codes.Unauthenticated, "token missing")
 	}
+	tokenStr := values[0]
 
-	parseToken, err := ValidateToken(token[0])
+	parseToken, err := ValidateToken(tokenStr)
 	if err != nil || !parseToken.Valid {
 		return nil, status.Error(codes.Unauthenticated, "metadata missing")
 	}
@@ -42,6 +43,6 @@ func AuthInterceptor(
 
 	newCtx := context.WithValue(ctx, "username", username)
 
-	return handler(newCtx, username)
+	return handler(newCtx, req)
 
 }
