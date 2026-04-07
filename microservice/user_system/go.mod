@@ -5,7 +5,7 @@ go 1.24.3
 require (
 	github.com/lib/pq v1.12.1
 	google.golang.org/grpc v1.80.0
-	google.golang.org/protobuf v1.36.11
+	google.golang.org/protobuf v1.36.11 // indirect
 	shared-proto v0.0.0 // 👈 ADD THIS
 )
 

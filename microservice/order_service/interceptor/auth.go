@@ -1,8 +1,9 @@
 package interceptor
 
 import (
-	"api-gateway/internal/middleware"
 	"context"
+	shared "shared/auth"
+
 	"strings"
 
 	"github.com/golang-jwt/jwt"
@@ -12,7 +13,8 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+func AuthInterceptor(ctx context.Context, req interface{},
+	info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 
 	if strings.Contains(info.FullMethod, "Login") {
 		return handler(ctx, req)
@@ -28,18 +30,24 @@ func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServe
 		return nil, status.Error(codes.Unauthenticated, "token missing")
 	}
 
-	tokenStr := authHeader[0]
+	tokenStr := strings.TrimPrefix(authHeader[0], "Bearer ")
 
-	token, err := middleware.ValidateToken(tokenStr)
+	token, err := shared.ValidateToken(tokenStr)
 	if err != nil || !token.Valid {
 		return nil, status.Error(codes.Unauthenticated, "invalid token")
 	}
 
-	claims := token.Claims.(jwt.MapClaims)
-	email := claims["email"].(string)
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		return nil, status.Error(codes.Unauthenticated, "invalid claims")
+	}
+
+	email, ok := claims["email"].(string)
+	if !ok {
+		return nil, status.Error(codes.Unauthenticated, "email missing")
+	}
 
 	ctx = context.WithValue(ctx, "email", email)
 
 	return handler(ctx, req)
-
 }

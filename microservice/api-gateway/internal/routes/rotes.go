@@ -10,7 +10,6 @@ import (
 
 func Setup(r *gin.Engine, clients *client.Clients) {
 
-	r.Use(middleware.RateLimit())
 	r.POST("/user", func(ctx *gin.Context) {
 		handler.CreateUser(ctx, clients.UserClient)
 	})

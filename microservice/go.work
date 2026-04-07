@@ -1,0 +1,9 @@
+go 1.26.1
+
+use (
+	./api-gateway
+	./order_service
+	./shared
+	./shared-proto
+	./user_system
+)

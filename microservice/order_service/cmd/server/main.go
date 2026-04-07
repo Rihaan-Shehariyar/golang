@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"net"
+	"order_service/interceptor"
 	"order_service/internal/handler"
 	"order_service/internal/repository"
 	"order_service/internal/service"
@@ -42,7 +43,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	grpcserver := grpc.NewServer()
+	grpcserver := grpc.NewServer(grpc.UnaryInterceptor(interceptor.AuthInterceptor))
 	pb.RegisterOrderServiceServer(grpcserver, h)
 
 	log.Println("Order Service running on 50052")

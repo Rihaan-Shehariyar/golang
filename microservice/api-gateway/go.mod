@@ -4,7 +4,6 @@ go 1.25.0
 
 require (
 	github.com/gin-gonic/gin v1.12.0
-	github.com/golang-jwt/jwt v3.2.2+incompatible
 	google.golang.org/grpc v1.80.0
 	shared-proto v0.0.0
 )

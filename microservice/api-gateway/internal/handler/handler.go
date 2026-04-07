@@ -1,17 +1,17 @@
 package handler
 
 import (
-	"api-gateway/internal/middleware"
 	"context"
 	orderpb "shared-proto/order"
 	userpb "shared-proto/user"
+	shared "shared/auth"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"google.golang.org/grpc/metadata"
 	// "github.com/golang-jwt/jwt"
 )
-
 
 func CreateUser(c *gin.Context, client userpb.UserServiceClient) {
 
@@ -63,7 +63,7 @@ func Login(c *gin.Context, client userpb.UserServiceClient) {
 		return
 	}
 
-	token, err := middleware.GenerateToken(req.Email)
+	token, err := shared.GenerateToken(req.Email)
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return
@@ -84,7 +84,15 @@ func CreateOrder(c *gin.Context, client orderpb.OrderServiceClient) {
 		return
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	token := c.GetHeader("Authorization")
+
+	ctx := metadata.AppendToOutgoingContext(
+		context.Background(),
+		"authorization",
+		token,
+	)
+
+	ctx, cancel := context.WithTimeout(ctx, 2*time.Second)
 	defer cancel()
 
 	res, err := client.CreateOrder(ctx, &orderpb.CreateOrderRequest{
@@ -104,7 +112,15 @@ func GetOrder(c *gin.Context, client orderpb.OrderServiceClient) {
 	idParam := c.Param("id")
 	id, _ := strconv.Atoi(idParam)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	token := c.GetHeader("Authorization")
+
+	ctx := metadata.AppendToOutgoingContext(
+		context.Background(),
+		"authorization",
+		token,
+	)
+
+	ctx, cancel := context.WithTimeout(ctx, 2*time.Second)
 	defer cancel()
 
 	res, err := client.GetOrder(ctx, &orderpb.GetOrderRequest{
