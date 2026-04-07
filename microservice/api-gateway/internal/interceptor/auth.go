@@ -38,7 +38,6 @@ func AuthInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServe
 	claims := token.Claims.(jwt.MapClaims)
 	email := claims["email"].(string)
 
-	// inject into context
 	ctx = context.WithValue(ctx, "email", email)
 
 	return handler(ctx, req)
