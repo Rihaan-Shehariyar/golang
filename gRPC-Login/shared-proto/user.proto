@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "user/proto";
+
+service LoginService {
+ rpc Login(LoginRequest) returns(LoginResponse);
+ rpc GetProfile(ProfileRequet) returns(ProfileResponse);
+}
+
+message LoginRequest{
+ string username = 1;
+ string password = 2;
+}
+
+message LoginResponse{
+ string token = 1;
+ 
+}
+
+message ProfileRequet{
+ string token = 1;
+}
+
+message ProfileResponse{
+ string username = 1;
+}

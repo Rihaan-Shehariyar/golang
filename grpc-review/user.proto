@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "user/proto";
+
+service UserService{
+ rpc login(UserRequest) returns(UserResponse)
+}
+message UserRequest{
+ string name = 1;
+ string password = 2;
+}
+
+message UserResponse{
+ string name = 1;
+}
+
+stub loadbalance
