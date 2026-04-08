@@ -19,6 +19,7 @@ func GenerateToken(username string) (string, error) {
 
 	return token.SignedString(jwtSecret)
 
+
 }
 
 func ValidateToken(tokenstr string)(*jwt.Token,error){
