@@ -9,6 +9,7 @@ import (
 
 func Register(c *gin.Context){
 
+
   user:= models.User{
   Name: "john",
   Email: "rihaanshehariyar@gmail.com",
@@ -17,7 +18,6 @@ func Register(c *gin.Context){
 }
   
  db:= database.DB
-
  db.Create(&user)
 
 
