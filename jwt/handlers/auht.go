@@ -4,7 +4,6 @@ import (
 	
 	"jwt/database"
 	"jwt/models"
-	"jwt/utils"
 
 	"net/http"
 
@@ -78,42 +77,42 @@ func Login(c *gin.Context){
  return
 }
  
- access,_ := utils.Accestoken(user.ID)
- refresh,_ := utils.RefreshToken(user.ID)
+//  access,_ := utils.Accestoken(user.ID)
+//  refresh,_ := utils.RefreshToken(user.ID)
 
- user.RefreshToken = refresh
- database.DB.Save(&user)
+//  user.RefreshToken = refresh
+//  database.DB.Save(&user)
 
- c.JSON(200,gin.H{"access_token" : access,"refresh_token" : refresh})
+//  c.JSON(200,gin.H{"access_token" : access,"refresh_token" : refresh})
 
 
 }
 
-func Refresh(c *gin.Context){
+// func Refresh(c *gin.Context){
   
- var body struct{ 
+//  var body struct{ 
 
- RefreshToken string `json:"refresh_token"`
-}
+//  RefreshToken string `json:"refresh_token"`
+// }
 
-	c.ShouldBindJSON(&body)
+// 	c.ShouldBindJSON(&body)
 
- claims,err:=utils.ParseToken(body.RefreshToken)
- 	if err != nil {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid refresh token"})
-		return
-	}
+//  claims,err:=utils.ParseToken(body.RefreshToken)
+ 	// if err != nil {
+	// 	c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid refresh token"})
+	// 	return
+	// }
 
- var user models.User
- database.DB.First(&user,uint(claims["user_id"].(float64)))
+//  var user models.User
+//  database.DB.First(&user,uint(claims["user_id"].(float64)))
 
-if user.RefreshToken !=body.RefreshToken{
- c.JSON(http.StatusUnauthorized,gin.H{
- "error" : "token Mismatch",
-})
- return
-}
+// if user.RefreshToken !=body.RefreshToken{
+//  c.JSON(http.StatusUnauthorized,gin.H{
+//  "error" : "token Mismatch",
+// })
+//  return
+// }
 
- access,_ := utils.Accestoken(user.ID)
- c.JSON(http.StatusOK, gin.H{"access_token": access})
-}
+//  access,_ := utils.Accestoken(user.ID)
+//  c.JSON(http.StatusOK, gin.H{"access_token": access})
+// }
