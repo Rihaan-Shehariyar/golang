@@ -14,7 +14,6 @@ func Register(c *gin.Context){
   Name: "john",
   Email: "rihaanshehariyar@gmail.com",
   Password: "1234",
-  
 }
   
  db:= database.DB
