@@ -17,8 +17,6 @@ func InsertionSort(arr []int) {
 
 }
 
-
-
 func BubbleSort(arr []int) {
 
 	n := len(arr)
@@ -40,10 +38,6 @@ func BubbleSort(arr []int) {
 	}
 
 }
-
-
-
-
 
 func SelectionSort(arr []int) {
 	n := len(arr)
