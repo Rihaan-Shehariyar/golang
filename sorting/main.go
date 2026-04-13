@@ -40,8 +40,8 @@ func BubbleSort(arr []int) {
 }
 
 func SelectionSort(arr []int) {
-	n := len(arr)
 
+	n := len(arr)
 	for i := 0; i < n; i++ {
 		minIndex := i
 
