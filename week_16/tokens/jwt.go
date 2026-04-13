@@ -7,7 +7,6 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-
   var JwtSecretKey = []byte(os.Getenv("Secret Key"))
 
 type JwtClaims struct {
