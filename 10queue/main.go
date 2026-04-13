@@ -138,11 +138,9 @@ import (
 // }
 
 
-type node struct{
-    
+type node struct{    
   data int
-  next *node
-  
+  next *node 
 }
 
 type linkedList struct{
