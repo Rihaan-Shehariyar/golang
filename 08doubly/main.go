@@ -30,6 +30,8 @@ func (l *doublyList) append(value int) {
 
 }
 
+
+
 func (l *doublyList) insert(value int) {
 
 	newNode := &node{data: value}

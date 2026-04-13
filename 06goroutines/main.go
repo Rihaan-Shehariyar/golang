@@ -18,11 +18,9 @@
 
 package main
 
-
-
 import (
-    "fmt"
-    "sync"
+	"fmt"
+	"sync"
 )
 
 var count = 0
