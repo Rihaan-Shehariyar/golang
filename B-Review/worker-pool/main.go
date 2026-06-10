@@ -133,3 +133,36 @@ func main(){
 
  
 }
+
+
+
+
+func StartWorkerPool(numWorkers int,jobs []int){
+
+ jobch := make(chan int)
+
+ var wg sync.WaitGroup
+
+  for i:=1 ; i < numWorkers ; i++{
+ 
+ wg.Add(1)
+
+ go func(worker int) {
+   defer wg.Done()
+
+ for job := range jobch{
+   fmt.Printf("Worker %d processed %d job",worker,job)
+}
+ 
+ }(i)
+ 
+ for _,job := range jobs{
+   jobch <- job
+}
+
+close(jobch)
+
+wg.Wait()
+}
+ 
+}

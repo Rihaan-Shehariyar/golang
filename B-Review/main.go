@@ -134,7 +134,7 @@ type Node struct {
 // 	var prev *Node
 // 	curr := head
 
-// 	//  1->2->3->4->nil
+// 	//  1->2->3->4->nil     next = 2   1,1,3,4 prev=1 curr = 2 
 
 // 	for curr != nil {
 // 		next := curr.Next
