@@ -18,32 +18,47 @@
 
 package main
 
-import (
-	"fmt"
-	"sync"
-)
+// import (
+// 	"fmt"
+// 	"sync"
+// )
 
 var count = 0
 var mu sync.Mutex
 
-func increment() {
+// func increment() {
 
-    mu.Lock()
-    count++
-    mu.Unlock()
+//     mu.Lock()
+//     count++
+//     mu.Unlock()
+// }
+
+// func main() {
+//     var wg sync.WaitGroup
+
+//     for i := 0; i < 1000; i++ {
+//         wg.Add(1)
+//         go func() {
+//             increment()
+//             wg.Done()
+//         }()
+//     }
+
+//     wg.Wait()
+//     fmt.Println(count)
+// }
+ 
+func increment(){
+
+
 }
 
-func main() {
-    var wg sync.WaitGroup
 
-    for i := 0; i < 1000; i++ {
-        wg.Add(1)
-        go func() {
-            increment()
-            wg.Done()
-        }()
-    }
+func main(){
 
-    wg.Wait()
-    fmt.Println(count)
+ for i := 1 ; i <= 4 ; i++{
+
+ go 
+
+} 
 }

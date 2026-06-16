@@ -1,9 +1,8 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"time"
+	"sync"
 )
 
 // import (
@@ -28,28 +27,54 @@ import (
 // 	}
 // }
 
+// func worker(ctx context.Context) {
+
+// 	select {
+// 	case <-time.After(3 * time.Second):
+// 		fmt.Println("Work finished")
+
+// 	default:
+// 		fmt.Println("Work cancelled : ", ctx.Err())
+
+// 	}
+// }
 
 
-func worker(ctx context.Context) {
+func worker(jobwoker int,jobs <-chan int , wg *sync.WaitGroup){
 
-	select {
-	case <-time.After(3 * time.Second):
-		fmt.Println("Work finished")
+ defer wg.Done()
+ 
+ for job := range jobs{
+ 
+  fmt.Printf("Worker %d proccesed job %d ",jobwoker,job)
+ 
+}
 
-	default:
-		fmt.Println("Work cancelled : ", ctx.Err())
-
-	}
 }
 
 
 func main(){
 
- ctx,cancel := context.WithTimeout(context.Background(),2 *time.Second)
- defer cancel()
+  jobs := make(chan int)
 
- go worker(ctx)
 
- time.Sleep(4 * time.Second)
+ var wg sync.WaitGroup
+
+ numworkers := 3
+
+ for i := 1; i <= numworkers; i++ {
+	wg.Add(1)
+  go worker(numworkers,jobs,&wg)
+ }
+
+
+ for j := 1; j <=5; j++ {
+	jobs <- j
+ }
+
+close(jobs)
+ 
+
+wg.Wait()
 
 }
